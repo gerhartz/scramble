@@ -1,0 +1,8 @@
+{
+  "name": "Scramble",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "b3cfddb1"
+}
