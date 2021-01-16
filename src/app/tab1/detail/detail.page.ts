@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { ClimbService } from 'src/app/climb.service';
 
 @Component({
   selector: 'app-detail',
@@ -6,10 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
+  private mountainDoc: AngularFirestoreDocument<any>;
+  mountain: Observable<any>;
+  private routeSub: Subscription;
 
-  constructor() { }
+  
+
+  constructor(
+    private climbService: ClimbService,
+    private route: ActivatedRoute,
+    private afs: AngularFirestore
+  ) { }
 
   ngOnInit() {
+    this.getMountain();
+  }
+
+  getMountain() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.mountainDoc = this.afs.doc<any>('mountains/' + id);
+    this.mountain = this.mountainDoc.valueChanges();
+    //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
   }
 
 }

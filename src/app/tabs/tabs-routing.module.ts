@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { DetailPageModule } from '../tab1/detail/detail.module';
 
 const routes: Routes = [
   {

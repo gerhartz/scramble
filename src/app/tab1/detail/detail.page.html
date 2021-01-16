@@ -8,5 +8,47 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="../../../assets/icon/favicon.png">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h2>{{ (mountain | async)?.name }}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p><b>Elevation</b></p>
+        <p><b>Prominence</b></p>
+        <p><b>Range</b></p>
+        <p *ngIf="(mountain | async)?.is14er"><b>14er Rank</b></p>
+        <p><b>Location</b></p>
+      </ion-col>
+      <ion-col>
+        <p>{{ (mountain | async)?.elevation | number }}'</p>
+        <p>{{ (mountain | async)?.prominence | number }}'</p>
+        <p>{{ (mountain | async)?.range }}</p>
+        <p *ngIf="(mountain | async)?.is14er">{{ (mountain|async)?.fourteenerRank }} of 53</p>
+      </ion-col>
+      <ion-row>
+        <ion-col>
+          {{ (mountain | async)?.location }}
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Routes</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let route of (mountain | async)?.routes">
+      <ion-label>
+        <h2>{{ route.name }}</h2>
+        <h3>Class {{ route.class }}, Gain: {{ route.gain | number }}', Mileage: {{ route.mileage | number }}mi</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -14,6 +14,11 @@ export class ClimbService {
     return this.firestore.collection('mountains').snapshotChanges();
   }
 
+  getMountain(mountainId: string) {
+    console.log('string id: ', mountainId);
+    return this.firestore.collection('mountains').doc(mountainId).snapshotChanges();
+  }
+
   createMountain(mountain: any) {
     return this.firestore.collection('mountains').add(mountain);
   }
