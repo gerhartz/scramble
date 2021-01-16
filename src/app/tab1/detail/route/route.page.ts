@@ -5,15 +5,14 @@ import { Observable, Subscription } from 'rxjs';
 import { ClimbService } from 'src/app/climb.service';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.page.html',
-  styleUrls: ['./detail.page.scss'],
+  selector: 'app-route',
+  templateUrl: './route.page.html',
+  styleUrls: ['./route.page.scss'],
 })
-export class DetailPage implements OnInit {
-  private mountainDoc: AngularFirestoreDocument<any>;
-  mountain: Observable<any>;
+export class RoutePage implements OnInit {
+  private climbingRouteDoc: AngularFirestoreDocument<any>;
+  climbingRoute: Observable<any>;
   private routeSub: Subscription;
-  routeList: Observable<any>;
 
   
 
@@ -24,15 +23,13 @@ export class DetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getMountain();
+    this.getRoute();
   }
 
-  getMountain() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.mountainDoc = this.afs.doc<any>('mountains/' + id);
-    this.mountain = this.mountainDoc.valueChanges();
-    this.routeList = this.afs.doc<any>('mountains/' + id).collection('routes').valueChanges();
+  getRoute() {
+    const id = this.route.snapshot.paramMap.get('routeId');
+    this.climbingRouteDoc = this.afs.doc<any>('routes/' + id);
+    this.climbingRoute = this.climbingRouteDoc.valueChanges();
     //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
   }
-
 }

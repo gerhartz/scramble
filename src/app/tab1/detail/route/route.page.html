@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Route Detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1/detail"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="../../../assets/icon/favicon.png">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>{{ (climbingRoute | async)?.mountain }}</h3>
+        <h5>{{ (climbingRoute | async)?.name }}</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p><b>Difficulty</b></p>
+        <p><b>Risk Factors</b></p>
+        <br><br><br><br>
+      </ion-col>
+      <ion-col>
+        <p>{{ (climbingRoute | async)?.difficulty | number }}</p>
+        <p>Exposure: {{ (climbingRoute | async)?.exposure | number }}</p>
+        <p>Rockfall: {{ (climbingRoute | async)?.rockfall | number }}</p>
+        <p>Route-Finding: {{ (climbingRoute | async)?.routeFinding | number }}</p>
+        <p>Commitment: {{ (climbingRoute | async)?.commitment | number }}</p>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p><b>Start</b></p>
+        <p><b>Summit</b></p>
+        <p><b>Total Gain</b></p>
+        <p><b>Round Trip</b></p>
+        <p><b>National Forest</b></p>
+      </ion-col>
+      <ion-col>
+        <p>{{ (climbingRoute | async)?.startElev | number }}'</p>
+        <p>{{ (climbingRoute | async)?.summit | number }}'</p>
+        <p>{{ (climbingRoute | async)?.summit - (climbingRoute | async)?.startElev | number }}'</p>
+        <p>{{ (climbingRoute | async)?.roundTrip | number }} miles</p>
+        <p>{{ (climbingRoute | async)?.nationalForest }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

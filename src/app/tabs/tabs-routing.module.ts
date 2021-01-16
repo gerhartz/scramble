@@ -24,6 +24,9 @@ const routes: Routes = [
         path: 'tab1/detail/:id', loadChildren: '../tab1/detail/detail.module#DetailPageModule'
       },
       {
+        path: 'tab1/detail/:mountainId/route/:routeId', loadChildren: '../tab1/detail/route/route.module#RoutePageModule'
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

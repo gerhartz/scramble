@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">Mountain Detail</ion-title>
+    <ion-title class="ion-text-center">{{ (mountain | async)?.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
@@ -44,11 +44,21 @@
     <ion-list-header>
       <ion-label>Routes</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let route of (mountain | async)?.routes">
+    <ion-item *ngFor="let route of (mountain | async)?.routes" routerLink="route/{{route.routeId}}">
       <ion-label>
         <h2>{{ route.name }}</h2>
         <h3>Class {{ route.class }}, Gain: {{ route.gain | number }}', Mileage: {{ route.mileage | number }}mi</h3>
       </ion-label>
     </ion-item>
+    <ion-list-header>
+      <ion-label>Geology</ion-label>
+    </ion-list-header>
+    <ion-list-header>
+      <ion-label>Flora</ion-label>
+    </ion-list-header>
+    <ion-list-header>
+      <ion-label>Fauna</ion-label>
+    </ion-list-header>
   </ion-list>
+    
 </ion-content>
