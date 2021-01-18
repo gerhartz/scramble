@@ -35,4 +35,9 @@ export class DetailPage implements OnInit {
     //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
   }
 
+  saveMountain() {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('savem ountain called, id: ', id);
+  }
+
 }

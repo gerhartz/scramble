@@ -11,7 +11,11 @@ export class ClimbService {
   ) { }
 
   getMountains() {
-    return this.firestore.collection('mountains').snapshotChanges();
+    return this.firestore.collection('mountains', ref => ref.orderBy('name')).snapshotChanges();
+  }
+
+  getMountainsByElevation() {
+    return this.firestore.collection('mountains', ref => ref.orderBy('elevation', 'desc')).snapshotChanges();
   }
 
   getMountain(mountainId: string) {

@@ -4,6 +4,9 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="end" name="bookmark-outline" (click)="saveMountain()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -50,15 +53,6 @@
         <h3>Class {{ route.class }}, Gain: {{ route.gain | number }}', Mileage: {{ route.mileage | number }}mi</h3>
       </ion-label>
     </ion-item>
-    <ion-list-header>
-      <ion-label>Geology</ion-label>
-    </ion-list-header>
-    <ion-list-header>
-      <ion-label>Flora</ion-label>
-    </ion-list-header>
-    <ion-list-header>
-      <ion-label>Fauna</ion-label>
-    </ion-list-header>
   </ion-list>
     
 </ion-content>
