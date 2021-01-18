@@ -5,7 +5,8 @@
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon slot="end" name="bookmark-outline" (click)="saveMountain()"></ion-icon>
+      <ion-icon *ngIf="!isFavorite" slot="end" name="bookmark-outline" (click)="handleBookmark()"></ion-icon>
+      <ion-icon *ngIf="isFavorite" slot="end" name="bookmark" (click)="handleBookmark()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

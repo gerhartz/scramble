@@ -9,9 +9,24 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Favorites</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>
+        Mountains
+      </ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let mountain of favoriteMountains | keyvalue" routerLink="tab1/detail/{{mountain.value.mountainId}}">
+      {{ mountain.value.name }}
+    </ion-item>
+    <ion-list-header>
+      Routes
+    </ion-list-header>
+    <ion-item *ngFor="let route of favoriteRoutes | keyvalue" routerLink="route/{{route.value.routeId}}">
+      {{ route.value.mountainName }} - {{ route.value.name }}
+    </ion-item>
+  </ion-list>
 </ion-content>

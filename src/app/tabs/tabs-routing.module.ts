@@ -21,10 +21,24 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
-        path: 'tab1/detail/:id', loadChildren: '../tab1/detail/detail.module#DetailPageModule'
+        path: 'tab1/detail/:id',
+        loadChildren: () => import('../tab1/detail/detail.module').then(m => m.DetailPageModule)
       },
       {
-        path: 'tab1/detail/:mountainId/route/:routeId', loadChildren: '../tab1/detail/route/route.module#RoutePageModule'
+        path: 'tab1/detail/:mountainId/route/:routeId',
+        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
+      },
+      {
+        path: 'tab2/tab1/detail/:id',
+        loadChildren: () => import('../tab1/detail/detail.module').then(m => m.DetailPageModule)
+      },
+      {
+        path: 'tab2/tab1/detail/:mountainId/route/:routeId',
+        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
+      },
+      {
+        path: 'tab2/route/:routeId',
+        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
       },
       {
         path: '',
