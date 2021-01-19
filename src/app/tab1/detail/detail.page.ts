@@ -16,6 +16,7 @@ export class DetailPage implements OnInit {
   private routeSub: Subscription;
   routeList: Observable<any>;
   isFavorite: boolean = false; //Whether the user has already favorited this
+  isCompleted: boolean = false; //Whether the user has marked this mountain as completed
   
   mountainName;
   mountainElevation;
@@ -33,10 +34,15 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     this.getMountain();
     this.checkIfMountainIsFavorite();
+    this.checkIfMountainIsCompleted();
   }
 
   async clearFavorites() {
     let results = this.storage.remove('favoriteMountains');
+  }
+
+  async clearCompleted() {
+    await this.storage.remove('completedMountains');
   }
 
   async checkIfMountainIsFavorite() {
@@ -62,6 +68,35 @@ export class DetailPage implements OnInit {
 
         console.log('here');
         this.isFavorite = false;
+        return false;
+
+      }
+    } catch (reason) {
+      console.log('Error in checkIfFavorites.', reason);
+    }
+  }
+
+  async checkIfMountainIsCompleted() {
+    const id = this.route.snapshot.paramMap.get('id');
+    let completedMountains = [];
+
+    try {
+      completedMountains = await this.storage.get('completedMountains');
+      console.log('completed: ', completedMountains);
+    
+      // No favorites, return false
+      if(completedMountains == null) {
+        this.isCompleted = false;
+        return false;
+      } else {
+        for(let mountain of completedMountains) {
+          if(mountain.mountainId == id){
+            this.isCompleted = true;
+            return true;
+          }
+        }
+
+        this.isCompleted = false;
         return false;
 
       }
@@ -238,6 +273,60 @@ export class DetailPage implements OnInit {
     } catch (reason) {
       console.log('Error in deleteFavorite.', reason);
     }
+  }
+
+  async saveMountainToProgress() {
+    let completedMountains = [];
+    const id = this.route.snapshot.paramMap.get('id');
+    
+    try {
+      completedMountains = await this.storage.get('completedMountains');
+      console.log('fav mtns: ', completedMountains);
+
+      if(completedMountains == null){
+        completedMountains = [];
+      }
+
+      let mountainDetails = {
+        name: this.mountainName,
+        elevation: this.mountainElevation,
+        mountainId: id
+      };
+
+      console.log('mountain details to save: ', mountainDetails);
+
+      completedMountains.push(mountainDetails);
+
+      let newFavorites = await this.storage.set('completedMountains', completedMountains);
+    } catch (error) {
+      console.log('Error in addCompleteMountain.', error);
+    }
+    this.checkIfMountainIsCompleted();
+
+  }
+
+  async removeMountainFromProgress() {
+    try {
+      let completedMountains = [];
+      const id = this.route.snapshot.paramMap.get('id');
+  
+      completedMountains = await this.storage.get('completedMountains');
+  
+      if(completedMountains == null) {
+        completedMountains = [];
+      }
+  
+      let newCompletedMountains = completedMountains.filter(mountain => {
+        return mountain.mountainId != id;
+      });
+  
+      let results = await this.storage.set('completedMountains', newCompletedMountains);
+      console.log('results: ', results);
+    } catch (error) {
+      console.log('Error in deleteFavoriteMountain(). ', error);
+    }
+
+    this.checkIfMountainIsCompleted();
   }
 
 }

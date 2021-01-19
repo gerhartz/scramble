@@ -11,32 +11,42 @@
     <ion-toolbar>
       <ion-title size="large">Mountains</ion-title>
     </ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size="7">
+          <ion-segment [(ngModel)]="sortStatus" (ionChange)="handleEvent()">
+            <ion-segment-button value="name">
+              <ion-label>A - Z</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="elevation">
+              <ion-label>Elevation</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label>Select</ion-label>
+      <ion-select [(ngModel)]="state" (ionChange)="handleEvent()">
+        <ion-select-option value="All">All</ion-select-option>
+        <ion-select-option value="CO">Colorado</ion-select-option>
+        <ion-select-option value="blonde">Blonde</ion-select-option>
+        <ion-select-option value="black">Black</ion-select-option>
+        <ion-select-option value="red">Red</ion-select-option>
+      </ion-select>
+    </ion-item>
   </ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-col size="7">
-        <ion-segment (ionChange)="sortChanged($event)">
-          <ion-segment-button value="name">
-            <ion-label>A - Z</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="elevation">
-            <ion-label>Elevation</ion-label>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
-  </ion-grid>
   <ion-list>
     <ion-item *ngFor="let mountain of mountains; index as i" routerLink="detail/{{mountain.id}}">
       <ion-grid>
         <ion-row>
-          <ion-col>
-            <div><img src="../../assets/icon/mountain.ico"></div>
-          </ion-col>
-          <ion-col size="5">
+          <ion-col size="7">
             <div><p><b>{{mountain.name}}</b></p></div>
+          </ion-col>
+          <ion-col>
+            
           </ion-col>
           <ion-col>
             <div><p>{{mountain.elevation | number}}'</p></div>

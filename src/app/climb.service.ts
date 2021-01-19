@@ -14,6 +14,15 @@ export class ClimbService {
     return this.firestore.collection('mountains', ref => ref.orderBy('name')).snapshotChanges();
   }
 
+  getMountainsByState(stateAbbreviation, orderingProperty, orderingType ) {
+    return this.firestore.collection('mountains', ref => ref.where('state', '==', stateAbbreviation).orderBy(orderingProperty, orderingType)).snapshotChanges();
+  }
+
+  getMountainsByOrder(orderProperty, orderType) {
+    return this.firestore.collection('mountains', ref => ref.orderBy(orderProperty, orderType)).snapshotChanges();
+  }
+
+
   getMountainsByElevation() {
     return this.firestore.collection('mountains', ref => ref.orderBy('elevation', 'desc')).snapshotChanges();
   }

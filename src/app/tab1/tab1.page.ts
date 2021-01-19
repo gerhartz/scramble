@@ -8,6 +8,10 @@ import { ClimbService } from '../climb.service';
 })
 export class Tab1Page {
   mountains:any[] = [];
+  searchTerm: string = '';
+  sortStatus = 'name';
+  state = '';
+  ordering = 'asc';
 
   constructor(
     private climbService: ClimbService
@@ -24,6 +28,43 @@ export class Tab1Page {
     });
   }
 
+  handleEvent(){
+    console.log('here in handle');
+    //console.log(event.target.value);
+    // let stateAbbreviation = event.target.value;
+    
+    if(this.sortStatus == 'elevation'){
+      this.ordering = 'desc'
+    } else {
+      this.ordering = 'asc';
+    }
+
+    
+    if(this.state == '' || this.state == 'All'){
+      this.climbService.getMountainsByOrder(this.sortStatus, this.ordering).subscribe(data => {
+        this.mountains = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            ...e.payload.doc.data() as {}
+          };
+        })
+      });
+    } else {
+      this.climbService.getMountainsByState(this.state, this.sortStatus, this.ordering).subscribe(data => {
+        this.mountains = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            ...e.payload.doc.data() as {}
+          };
+        })
+      });
+    }
+
+
+
+  }
+
+  /*
   sortChanged(event) {
     //console.log(event);
     console.log(event.detail.value);
@@ -50,5 +91,7 @@ export class Tab1Page {
       });
     }
   }
+  */
+
 
 }
