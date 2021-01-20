@@ -15,3 +15,65 @@
     background:blue; 
     width:25%;
 }
+
+#elevationIcon {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 1.5em;
+    width: 4.5em;
+    border-radius: 25px;
+}
+
+#elevation {
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+#mountainDetails {
+    padding-bottom: 10px;
+}
+
+#dot1 {
+    height: 0.5em;
+    width: 0.5em;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+#dot2 {
+    height: 0.5em;
+    width: 0.5em;
+    background-color: yellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#dot3 {
+    height: 0.5em;
+    width: 0.5em;
+    background-color: orange;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#dot4 {
+    height: 0.5em;
+    width: 0.5em;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.dot {
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}

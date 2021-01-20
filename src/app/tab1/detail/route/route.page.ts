@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ClimbService } from 'src/app/climb.service';
 import { Storage } from '@ionic/storage';
+import { ModalController } from '@ionic/angular';
+import { ResourceModalPage } from '../../../modals/resource-modal/resource-modal.page';
 
 @Component({
   selector: 'app-route',
@@ -18,9 +20,13 @@ export class RoutePage implements OnInit {
   private routeData;
   private favoriteRoutes = [];
 
+  private linkToFourteenersWebsite;
+
   private routeId;
   private routeName;
   private mountainName;
+
+  dataReturned: any;
 
   
 
@@ -28,12 +34,32 @@ export class RoutePage implements OnInit {
     private climbService: ClimbService,
     private route: ActivatedRoute,
     private afs: AngularFirestore,
-    private storage: Storage
+    private storage: Storage,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
     //this.deleteRefs()
     this.getRoute();
+  }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ResourceModalPage,
+      componentProps: {
+        "paramID": 123,
+        "paramTitle": "Test Title"
+      }
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
+
+    return await modal.present();
   }
 
   getRoute() {
@@ -43,6 +69,7 @@ export class RoutePage implements OnInit {
     this.climbingRoute.subscribe(data => {
       this.routeName = data.name;
       this.mountainName = data.mountain;
+      this.linkToFourteenersWebsite = data.linkToFourteenersWebsite;
     })
     
     this.checkIfFavoriteRoute();
@@ -146,5 +173,10 @@ export class RoutePage implements OnInit {
     } catch (reason) {
       console.log('Error in checkIfFavorites.', reason);
     }
+  }
+
+  navigateToFourteenerWebsite() {
+    console.log('nav to 14ers called and link: ', this.linkToFourteenersWebsite);
+    window.open(this.linkToFourteenersWebsite, "_blank");
   }
 }

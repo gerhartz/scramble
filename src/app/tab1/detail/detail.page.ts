@@ -20,6 +20,8 @@ export class DetailPage implements OnInit {
   
   mountainName;
   mountainElevation;
+  resources: any;
+  guidebooks: any;
 
 
   
@@ -143,8 +145,11 @@ export class DetailPage implements OnInit {
       console.log('data: ', data);
       this.mountainName = data.name;
       this.mountainElevation = data.elevation;
+      this.resources = data.resources;
     })
     this.routeList = this.afs.doc<any>('mountains/' + id).collection('routes').valueChanges();
+    this.resources = this.afs.doc<any>('mountains/' + id).collection('resources').valueChanges();
+    this.guidebooks = this.afs.doc<any>('mountains/' + id).collection('guidebooks').valueChanges();
     //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
   }
 

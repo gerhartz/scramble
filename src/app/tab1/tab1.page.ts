@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ClimbService } from '../climb.service';
+import { ModalController } from '@ionic/angular';
+import { ResourceModalPage } from '../modals/resource-modal/resource-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -12,9 +14,11 @@ export class Tab1Page {
   sortStatus = 'name';
   state = '';
   ordering = 'asc';
+  dataReturned: any;
 
   constructor(
-    private climbService: ClimbService
+    private climbService: ClimbService,
+    public modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -59,9 +63,26 @@ export class Tab1Page {
         })
       });
     }
+  }
 
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ResourceModalPage,
+      swipeToClose: true,
+      componentProps: {
+        "paramID": 123,
+        "paramTitle": "Test Title"
+      }
+    });
 
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        this.dataReturned = dataReturned.data;
+        //alert('Modal Sent Data :'+ dataReturned);
+      }
+    });
 
+    return await modal.present();
   }
 
   /*

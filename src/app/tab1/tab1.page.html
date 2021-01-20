@@ -1,12 +1,142 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="ion-text-center">
-      14ers
+      Mountains
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openModal()">Sort / Filter</ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="sortStatus" (ionChange)="handleEvent()">
+      <ion-segment-button value="name">
+        <ion-label>A - Z</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="elevation">
+        <ion-label>Elevation</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+<!--  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label class="ion-text-left">Select</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-select [(ngModel)]="state" (ionChange)="handleEvent()">
+            <ion-select-option value="All">All</ion-select-option>
+            <ion-select-option value="CO">Colorado</ion-select-option>
+            <ion-select-option value="blonde">Blonde</ion-select-option>
+            <ion-select-option value="black">Black</ion-select-option>
+            <ion-select-option value="red">Red</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+-->
 </ion-header>
+<ion-content fullscreen="true">
+  <ion-list>
+    <ion-item *ngFor="let mountain of mountains; index as i" routerLink="detail/{{mountain.id}}">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div><p>{{ i + 1 }}</p></div>
+          </ion-col>
+          <ion-col size="8">
+            <div>
+              <b>{{mountain.name}}</b>
+            </div>
+            <div id="mountainDetails">
+              <small id="elevation">{{ mountain.elevation | number }}'</small>
+              <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
+            </div>
+            <div *ngIf="mountain.hasRouteClass">
+              <span *ngIf="mountain.hasRouteClass[0]" style="background-color: green;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: lightgray;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[1]" style="background-color: yellow;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: lightgray;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[2]" style="background-color: orange;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: lightgray;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[3]" style="background-color: rgb(145, 138, 136);" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: lightgray;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[4]" style="background-color: red;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: lightgray;" class="dot"></span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
 
+<!-- 
+<ion-content fullscreen="true">
+
+
+<ion-header [translucent]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="7">
+        <ion-segment [(ngModel)]="sortStatus" (ionChange)="handleEvent()">
+          <ion-segment-button value="name">
+            <ion-label>A - Z</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="elevation">
+            <ion-label>Elevation</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item>
+    <ion-label>Select</ion-label>
+    <ion-select [(ngModel)]="state" (ionChange)="handleEvent()">
+      <ion-select-option value="All">All</ion-select-option>
+      <ion-select-option value="CO">Colorado</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let mountain of mountains; index as i" routerLink="detail/{{mountain.id}}">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div><p>{{ i + 1 }}</p></div>
+          </ion-col>
+          <ion-col size="7">
+            <div><p><b>{{mountain.name}}</b></p></div>
+          </ion-col>
+          
+          <ion-col>
+            <div><p>{{mountain.elevation | number}}'</p></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
+</ion-content>
+
+
+<!-- 
 <ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Toolbar</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Mountains</ion-title>
@@ -42,12 +172,13 @@
     <ion-item *ngFor="let mountain of mountains; index as i" routerLink="detail/{{mountain.id}}">
       <ion-grid>
         <ion-row>
+          <ion-col>
+            <div><p>{{ i + 1 }}</p></div>
+          </ion-col>
           <ion-col size="7">
             <div><p><b>{{mountain.name}}</b></p></div>
           </ion-col>
-          <ion-col>
-            
-          </ion-col>
+          
           <ion-col>
             <div><p>{{mountain.elevation | number}}'</p></div>
           </ion-col>
@@ -58,3 +189,4 @@
 
   
 </ion-content>
+-->

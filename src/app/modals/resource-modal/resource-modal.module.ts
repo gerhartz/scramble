@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RoutePageRoutingModule } from './route-routing.module';
+import { ResourceModalPageRoutingModule } from './resource-modal-routing.module';
 
-import { RoutePage } from './route.page';
-
-
+import { ResourceModalPage } from './resource-modal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RoutePageRoutingModule
+    ResourceModalPageRoutingModule
   ],
-  declarations: [RoutePage]
+  declarations: [ResourceModalPage]
 })
-export class RoutePageModule {}
+export class ResourceModalPageModule {}
