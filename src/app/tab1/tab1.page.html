@@ -1,10 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">
       Mountains
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="openModal()">Sort / Filter</ion-button>
+      <ion-button (click)="openModal()">Filter / Sort</ion-button>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
@@ -36,16 +36,71 @@
     </ion-grid>
   </ion-toolbar>
 -->
+
 </ion-header>
-<ion-content fullscreen="true">
-  <ion-list>
-    <ion-item *ngFor="let mountain of mountains; index as i" routerLink="detail/{{mountain.id}}">
+<ion-content fullscreen="true" style="padding: 0px" >
+  <cdk-virtual-scroll-viewport itemSize="50">       
+    <div *cdkVirtualFor="let item of items">
+      {{ item }}
+    </div>
+   </cdk-virtual-scroll-viewport>
+
+<!--
+  <ion-list style="padding: 0px">
+    <ion-item 
+      *ngFor="let mountain of filteredMountains; index as i" 
+      routerLink="detail/{{mountain.id}}" 
+      lines="full" 
+      style="padding: 0px" 
+      class="ion-no-padding"
+    >
+      <ion-thumbnail slot="start" class="ion-no-margin" style="size: 75px;">
+        <img src="mountain.thumbnailUrl">
+      </ion-thumbnail>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <div><p>{{ i + 1 }}</p></div>
+            <div style="padding-left: 10px;">
+              <div>
+                <b>{{mountain.name}}</b>
+              </div>
+              <div id="mountainDetails">
+                <small id="elevation">{{ mountain.elevation | number }}'</small>
+                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
+              </div>
+              <div *ngIf="mountain.hasRouteClass">
+                <span *ngIf="mountain.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
+              </div>
+            </div>
           </ion-col>
-          <ion-col size="8">
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+-->
+
+</ion-content>
+
+<!--
+<ion-content fullscreen="true">
+  <ion-list>
+    <ion-item *ngFor="let mountain of filteredMountains; index as i" routerLink="detail/{{mountain.id}}">
+      <ion-thumbnail  slot="start">
+        <img  src="../../assets/icon/lincoln@3x.png">
+      </ion-thumbnail>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
             <div>
               <b>{{mountain.name}}</b>
             </div>
@@ -54,16 +109,16 @@
               <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
             </div>
             <div *ngIf="mountain.hasRouteClass">
-              <span *ngIf="mountain.hasRouteClass[0]" style="background-color: green;" class="dot"></span>
-              <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: lightgray;" class="dot"></span>
-              <span *ngIf="mountain.hasRouteClass[1]" style="background-color: yellow;" class="dot"></span>
-              <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: lightgray;" class="dot"></span>
-              <span *ngIf="mountain.hasRouteClass[2]" style="background-color: orange;" class="dot"></span>
-              <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: lightgray;" class="dot"></span>
-              <span *ngIf="mountain.hasRouteClass[3]" style="background-color: rgb(145, 138, 136);" class="dot"></span>
-              <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: lightgray;" class="dot"></span>
-              <span *ngIf="mountain.hasRouteClass[4]" style="background-color: red;" class="dot"></span>
-              <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: lightgray;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
+              <span *ngIf="mountain.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
+              <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
             </div>
           </ion-col>
         </ion-row>
@@ -72,6 +127,7 @@
   </ion-list>
 </ion-content>
 
+-->
 <!-- 
 <ion-content fullscreen="true">
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -22,6 +23,9 @@ export class DetailPage implements OnInit {
   mountainElevation;
   resources: any;
   guidebooks: any;
+  hasRouteClass: any[];
+  range: any;
+  profileUrl;
 
 
   
@@ -30,13 +34,20 @@ export class DetailPage implements OnInit {
     private climbService: ClimbService,
     private route: ActivatedRoute,
     private afs: AngularFirestore,
-    private storage: Storage
+    private storage: Storage,
+    private fireStorage: AngularFireStorage
   ) { }
 
   ngOnInit() {
     this.getMountain();
     this.checkIfMountainIsFavorite();
     this.checkIfMountainIsCompleted();
+    
+  }
+
+  getImage(imageUrl) {
+    const ref = this.fireStorage.ref(imageUrl);
+    this.profileUrl = ref.getDownloadURL();
   }
 
   async clearFavorites() {
@@ -146,7 +157,12 @@ export class DetailPage implements OnInit {
       this.mountainName = data.name;
       this.mountainElevation = data.elevation;
       this.resources = data.resources;
-    })
+      this.hasRouteClass = data.hasRouteClass;
+      this.range = data.range;
+      this.getImage(data.imageUrl);
+
+
+    });
     this.routeList = this.afs.doc<any>('mountains/' + id).collection('routes').valueChanges();
     this.resources = this.afs.doc<any>('mountains/' + id).collection('resources').valueChanges();
     this.guidebooks = this.afs.doc<any>('mountains/' + id).collection('guidebooks').valueChanges();
@@ -223,12 +239,16 @@ export class DetailPage implements OnInit {
       let mountainDetails = {
         name: this.mountainName,
         elevation: this.mountainElevation,
-        mountainId: id
+        mountainId: id,
+        range: this.range,
+        hasRouteClass: this.hasRouteClass
       };
 
       favoriteMountains.push(mountainDetails);
 
       let newFavorites = await this.storage.set('favoriteMountains', favoriteMountains);
+
+      console.log('new favorites: ', newFavorites);
     } catch (error) {
       console.log('Error in addFavoriteMountain.', error);
     }
@@ -295,7 +315,9 @@ export class DetailPage implements OnInit {
       let mountainDetails = {
         name: this.mountainName,
         elevation: this.mountainElevation,
-        mountainId: id
+        mountainId: id,
+        range: this.range,
+        hasRouteClass: this.hasRouteClass
       };
 
       console.log('mountain details to save: ', mountainDetails);

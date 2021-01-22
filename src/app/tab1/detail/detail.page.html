@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">{{ (mountain | async)?.name }}</ion-title>
+    <ion-title class="ion-text-center">Mountain</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
@@ -12,6 +12,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-no-padding">
+      <ion-col>
+        <img [src]="profileUrl | async" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -20,11 +27,11 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <p><b>Elevation</b></p>
-        <p><b>Prominence</b></p>
-        <p><b>Range</b></p>
-        <p *ngIf="(mountain | async)?.is14er"><b>14er Rank</b></p>
-        <p><b>Location</b></p>
+        <p><b>Elevation:</b></p>
+        <p><b>Prominence:</b></p>
+        <p><b>Range:</b></p>
+        <p *ngIf="(mountain | async)?.is14er"><b>14er Rank:</b></p>
+        <p style="padding-top: 0px;"><b>Location:</b></p>
       </ion-col>
       <ion-col>
         <p>{{ (mountain | async)?.elevation | number }}'</p>
@@ -32,22 +39,43 @@
         <p>{{ (mountain | async)?.range }}</p>
         <p *ngIf="(mountain | async)?.is14er">{{ (mountain|async)?.fourteenerRank }} of 53</p>
       </ion-col>
-      <ion-row>
-        <ion-col>
-          {{ (mountain | async)?.location }}
-        </ion-col>
-      </ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>{{ (mountain | async)?.location }}</p>
+      </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
     <ion-list-header>
       <ion-label>Routes</ion-label>
     </ion-list-header>
-    <ion-item *ngFor="let route of (mountain | async)?.routes" routerLink="route/{{route.routeId}}">
-      <ion-label>
-        <h2>{{ route.name }}</h2>
-        <h3>Class {{ route.class }}, Gain: {{ route.gain | number }}', Mileage: {{ route.mileage | number }}mi</h3>
-      </ion-label>
+    <ion-item *ngFor="let route of (mountain | async)?.routes">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7">
+            <ion-row style="padding-bottom: 2px;"><b>{{ route.name }}</b></ion-row>
+            <ion-row style="padding-top: 2px;"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>
+            <ion-row style="padding-top: 2px"><small>Gain: {{ route.gain | number}}'</small></ion-row>
+          </ion-col>
+          <ion-col class="ion-text-left">
+            <ion-row style="padding-bottom: 2px;">
+              <span style="background-color: #77d505;" class="classDisplay" *ngIf="route.class == 1"><small>Class 1</small></span>
+              <span style="background-color: #fdcd01;" class="classDisplay" *ngIf="route.class == 2"><small>Class 2</small></span>
+              <span style="background-color: #fda204;" class="classDisplay" *ngIf="route.class == 3"><small>Class 3</small></span>
+              <span style="background-color: #fd5d02" class="classDisplay" *ngIf="route.class == 4"><small>Class 4</small></span>
+              <span style="background-color: #d53732;" class="classDisplay" *ngIf="route.class == 5"><small>Class 5</small></span>
+            </ion-row>
+            <ion-row style="padding-top: 2px;">
+              <span *ngIf="route.trailheadAccess == 1" style="background-color: #77d505;" class="classDisplay"><small>Paved Road</small></span>
+              <span *ngIf="route.trailheadAccess == 2" style="background-color: #fdcd01;" class="classDisplay"><small>Easy 2WD Dirt</small></span>
+              <span *ngIf="route.trailheadAccess == 3" style="background-color: #fda204;" class="classDisplay"><small>Rough 2WD Dirt</small></span>
+              <span *ngIf="route.trailheadAccess == 4" style="background-color: #fd5d02;" class="classDisplay"><small>4WD Only</small></span>
+              <span *ngIf="route.trailheadAccess == 5" style="background-color: #d53732;" class="classDisplay"><small>Rough 4WD</small></span>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
     <ion-list-header>
       <ion-label>Resources</ion-label>

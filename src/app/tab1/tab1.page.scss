@@ -25,49 +25,15 @@
 }
 
 #elevation {
-    background-color: gray;
+    background-color: #545556;
     color: white;
     border-radius: 5px;
     padding: 3px;
 }
 
 #mountainDetails {
-    padding-bottom: 10px;
-}
-
-#dot1 {
-    height: 0.5em;
-    width: 0.5em;
-    background-color: green;
-    border-radius: 50%;
-    display: inline-block;
-  }
-
-#dot2 {
-    height: 0.5em;
-    width: 0.5em;
-    background-color: yellow;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5px;
-}
-
-#dot3 {
-    height: 0.5em;
-    width: 0.5em;
-    background-color: orange;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5px;
-}
-
-#dot4 {
-    height: 0.5em;
-    width: 0.5em;
-    background-color: red;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .dot {
@@ -76,4 +42,19 @@
     border-radius: 50%;
     display: inline-block;
     margin-left: 5px;
+}
+
+#test {
+    height: auto;
+    width: 20%;
+}
+
+ion-thumbnail {
+    width: 100px;
+    height: 100px;
+}
+
+img {
+    width: auto !important;
+    height: auto !important;
 }
