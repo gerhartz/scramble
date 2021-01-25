@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ClimbService } from 'src/app/climb.service';
 import { Storage } from '@ionic/storage';
+import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -26,6 +28,7 @@ export class DetailPage implements OnInit {
   hasRouteClass: any[];
   range: any;
   profileUrl;
+  thumbnailUrl: any;
 
 
   
@@ -35,7 +38,9 @@ export class DetailPage implements OnInit {
     private route: ActivatedRoute,
     private afs: AngularFirestore,
     private storage: Storage,
-    private fireStorage: AngularFireStorage
+    private fireStorage: AngularFireStorage,
+    private modalController: ModalController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -70,7 +75,6 @@ export class DetailPage implements OnInit {
         this.isFavorite = false;
         return false;
       } else {
-        console.log('spot A: ', favoriteMountains);
 
         for(let favorite of favoriteMountains) {
           if(favorite.mountainId == id){
@@ -95,7 +99,6 @@ export class DetailPage implements OnInit {
 
     try {
       completedMountains = await this.storage.get('completedMountains');
-      console.log('completed: ', completedMountains);
     
       // No favorites, return false
       if(completedMountains == null) {
@@ -132,10 +135,7 @@ export class DetailPage implements OnInit {
         this.isFavorite = false;
         return false;
       } else {
-        console.log('spot A: ', favoriteMountains);
-
         if(favoriteMountains[id] != undefined){
-          console.log('favorite mountain found!');
           this.isFavorite = true;
           return true;
         } else {
@@ -153,84 +153,35 @@ export class DetailPage implements OnInit {
     this.mountainDoc = this.afs.doc<any>('mountains/' + id);
     this.mountain = this.mountainDoc.valueChanges();
     this.mountain.subscribe(data => {
-      console.log('data: ', data);
       this.mountainName = data.name;
       this.mountainElevation = data.elevation;
       this.resources = data.resources;
       this.hasRouteClass = data.hasRouteClass;
       this.range = data.range;
-      this.getImage(data.imageUrl);
-
-
+      this.thumbnailUrl = data.thumbnailUrl;
     });
+
     this.routeList = this.afs.doc<any>('mountains/' + id).collection('routes').valueChanges();
     this.resources = this.afs.doc<any>('mountains/' + id).collection('resources').valueChanges();
     this.guidebooks = this.afs.doc<any>('mountains/' + id).collection('guidebooks').valueChanges();
-    //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
   }
 
   
   handleBookmark() {
     if(this.isFavorite) {
-      console.log('handle bookmrk, delete');
-      //this.deleteFavorite();
       this.deleteFavoriteMountain();
     } else {
-      //this.addFavorite();
       this.addFavoriteMountain();
     }
   }
 
-  async addFavorite() {
-    let favoriteMountains = {};
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log('addFavorite called and name: ', this.mountainName);
-
-
-    /*let mountainInfo = await this.afs.collection('mountains').doc(id).get().pipe()
-    if(!mountainInfo) {
-      console.log('no mountain info');
-    } else {
-      console.log('mountain info: ', mountainInfo.data());
-    }
-
-    console.log('mountain info: ', mountainInfo);
-*/
-    try {
-      favoriteMountains = await this.storage.get('favoriteMountains');
-      
-      // Check if no favorites
-      if(favoriteMountains == null) {
-        favoriteMountains = {};
-      }
-
-      let mountainInfo = {
-        name: this.mountainName,
-        elevation: this.mountainElevation
-      };
-
-      //Add
-      favoriteMountains[id] = mountainInfo;
-      let newFavoriteMountains = await this.storage.set('favoriteMountains', favoriteMountains);
-      alert('Added to Favorites!');
-      console.log('new favs: ', newFavoriteMountains);
-      this.checkIfFavorite();
-      return true;
-    } catch (reason) {
-      console.log(reason);
-      return false;
-    }   
-  }
-
-
   async addFavoriteMountain() {
-    console.log('add fav mtn called');
     let favoriteMountains = [];
     const id = this.route.snapshot.paramMap.get('id');
     
     try {
       favoriteMountains = await this.storage.get('favoriteMountains');
-      console.log('fav mtns: ', favoriteMountains);
+
 
       if(favoriteMountains == null){
         favoriteMountains = [];
@@ -241,14 +192,14 @@ export class DetailPage implements OnInit {
         elevation: this.mountainElevation,
         mountainId: id,
         range: this.range,
-        hasRouteClass: this.hasRouteClass
+        hasRouteClass: this.hasRouteClass,
+        thumbnailUrl: this.thumbnailUrl
       };
 
       favoriteMountains.push(mountainDetails);
 
       let newFavorites = await this.storage.set('favoriteMountains', favoriteMountains);
 
-      console.log('new favorites: ', newFavorites);
     } catch (error) {
       console.log('Error in addFavoriteMountain.', error);
     }
@@ -271,7 +222,6 @@ export class DetailPage implements OnInit {
       });
   
       let results = await this.storage.set('favoriteMountains', newFavorites);
-      console.log('results: ', results);
     } catch (error) {
       console.log('Error in deleteFavoriteMountain(). ', error);
     }
@@ -279,34 +229,13 @@ export class DetailPage implements OnInit {
     this.checkIfMountainIsFavorite();
   }
 
- 
 
-  // Replaces the favorite list with a new favorite list after removing the current mountain ID
-  // Will only be called if the isFavorite == true
-  // Assumes favorite list exists if called
-  async deleteFavorite() {
-    let favoriteMountains = [];
-    const id = this.route.snapshot.paramMap.get('id');
-
-    try {
-      favoriteMountains = await this.storage.get('favoriteMountains');
-      delete favoriteMountains[id];
-
-      let newResults = await this.storage.set('favoriteMountains', favoriteMountains);
-      alert('Removed from Favorites.');
-      this.checkIfFavorite();
-    } catch (reason) {
-      console.log('Error in deleteFavorite.', reason);
-    }
-  }
-
-  async saveMountainToProgress() {
+  async saveMountainToProgress(completedDate) {
     let completedMountains = [];
     const id = this.route.snapshot.paramMap.get('id');
     
     try {
       completedMountains = await this.storage.get('completedMountains');
-      console.log('fav mtns: ', completedMountains);
 
       if(completedMountains == null){
         completedMountains = [];
@@ -317,10 +246,11 @@ export class DetailPage implements OnInit {
         elevation: this.mountainElevation,
         mountainId: id,
         range: this.range,
-        hasRouteClass: this.hasRouteClass
+        hasRouteClass: this.hasRouteClass,
+        dateCompleted: completedDate,
+        thumbnailUrl: this.thumbnailUrl
       };
 
-      console.log('mountain details to save: ', mountainDetails);
 
       completedMountains.push(mountainDetails);
 
@@ -348,12 +278,72 @@ export class DetailPage implements OnInit {
       });
   
       let results = await this.storage.set('completedMountains', newCompletedMountains);
-      console.log('results: ', results);
     } catch (error) {
       console.log('Error in deleteFavoriteMountain(). ', error);
     }
 
     this.checkIfMountainIsCompleted();
   }
+
+  async presentSaveProgressAlert() {
+    let today = new Date(Date.now()).toISOString();
+    console.log('today: ', today);
+    today = today.substring(0,10);
+    console.log('now today: ', today);
+    
+
+    const alert = this.alertController.create({
+      header: 'Summit Date',
+      inputs: [
+        {
+          name: 'date1',
+          type: 'date',
+          max: today
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('cancel called');
+          }
+        },
+        {
+          text: 'Save',
+          handler: (data) => {
+            this.saveMountainToProgress(data.date1);
+            console.log('save called and date: ', data.date1);
+          }
+        }
+      ]
+    });
+
+    (await alert).present();
+  }
+
+
+  async presentRemoveProgressAlert() {
+    const alert = this.alertController.create({
+      header: 'Delete?',
+      message: `Are you sure you want to remove ${this.mountainName} from your saved progress?`,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => { console.log('cancel called'); }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.removeMountainFromProgress();
+          }
+        }
+      ]
+    });
+
+    (await alert).present();
+  }
+
 
 }

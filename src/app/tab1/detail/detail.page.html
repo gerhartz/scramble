@@ -10,17 +10,11 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-grid class="ion-no-padding">
-    <ion-row class="ion-no-padding">
-      <ion-col>
-        <img [src]="profileUrl | async" />
-      </ion-col>
-    </ion-row>
   </ion-grid>
   <ion-grid>
-    <ion-row>
+    <ion-row class="ion-text-center">
       <ion-col>
         <h2>{{ (mountain | async)?.name }}</h2>
       </ion-col>
@@ -89,14 +83,11 @@
     <ion-item *ngFor="let guidebook of (mountain | async)?.guidebooks">
       <a href="{{ guidebook.url}}">{{guidebook.name}}</a>
     </ion-item>
-  </ion-list>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button *ngIf="!isCompleted" expand="block" color="tertiary" (click)="saveMountainToProgress()">Mark as Completed</ion-button>
-        <ion-button *ngIf="isCompleted" expand="block" color="light" (click)="removeMountainFromProgress()">Completed</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  
+  </ion-list>  
+  <ion-button *ngIf="!isCompleted" expand="block" color="secondary" (click)="presentSaveProgressAlert()">
+    Save to Progress
+  </ion-button>
+  <ion-button *ngIf="isCompleted" expand="block" color="primary" (click)="presentRemoveProgressAlert()">
+    Completed
+  </ion-button>
 </ion-content>
