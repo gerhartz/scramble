@@ -1,29 +1,3 @@
-#leftbox {
-    float:left;  
-    background:Red; 
-    width:25%;
-}
-
-#middlebox {
-    float:left;  
-    background:Green; 
-    width:50%;
-}
-
-#rightbox {
-    float:right; 
-    background:blue; 
-    width:25%;
-}
-
-#elevationIcon {
-    padding-left: 0px;
-    padding-right: 0px;
-    height: 1.5em;
-    width: 4.5em;
-    border-radius: 25px;
-}
-
 #elevation {
     background-color: #545556;
     color: white;
@@ -42,11 +16,6 @@
     border-radius: 50%;
     display: inline-block;
     margin-left: 5px;
-}
-
-#test {
-    height: auto;
-    width: 20%;
 }
 
 ion-thumbnail {

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { DetailPageModule } from '../tab1/detail/detail.module';
 
 const routes: Routes = [
   {
@@ -25,20 +24,8 @@ const routes: Routes = [
         loadChildren: () => import('../tab1/detail/detail.module').then(m => m.DetailPageModule)
       },
       {
-        path: 'tab1/detail/:mountainId/route/:routeId',
-        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
-      },
-      {
         path: 'tab2/tab1/detail/:id',
         loadChildren: () => import('../tab1/detail/detail.module').then(m => m.DetailPageModule)
-      },
-      {
-        path: 'tab2/tab1/detail/:mountainId/route/:routeId',
-        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
-      },
-      {
-        path: 'tab2/route/:routeId',
-        loadChildren: () => import('../tab1/detail/route/route.module').then(m => m.RoutePageModule)
       },
       {
         path: 'tab3/detail/:id',
