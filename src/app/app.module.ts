@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CdkScrollableModule, ScrollingModule } from "@angular/cdk/scrolling";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,8 +29,9 @@ import { CdkScrollableModule, ScrollingModule } from "@angular/cdk/scrolling";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    CdkScrollableModule,
     ScrollingModule,
-    CdkScrollableModule
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
