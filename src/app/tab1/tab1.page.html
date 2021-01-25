@@ -39,23 +39,13 @@
 
 </ion-header>
 <ion-content fullscreen="true" style="padding: 0px" >
-  <cdk-virtual-scroll-viewport itemSize="50">       
-    <div *cdkVirtualFor="let item of items">
-      {{ item }}
-    </div>
-   </cdk-virtual-scroll-viewport>
 
 <!--
-  <ion-list style="padding: 0px">
-    <ion-item 
-      *ngFor="let mountain of filteredMountains; index as i" 
-      routerLink="detail/{{mountain.id}}" 
-      lines="full" 
-      style="padding: 0px" 
-      class="ion-no-padding"
-    >
+  <ion-list class="ion-no-padding">
+  <ion-virtual-scroll [items]="filteredMountains" approxItemHeight="100px">
+    <ion-item *virtualItem="let mountain" lines="full" routerLink="detail/{{mountain.id}}" style="padding: 0px">
       <ion-thumbnail slot="start" class="ion-no-margin" style="size: 75px;">
-        <img src="mountain.thumbnailUrl">
+        <img [src]="mountain.imageUrl">
       </ion-thumbnail>
       <ion-grid>
         <ion-row>
@@ -85,9 +75,57 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-  </ion-list>
+  </ion-virtual-scroll>
+</ion-list>
 
 -->
+
+
+  <ion-list style="padding: 0px;">
+    <ion-virtual-scroll [items]="filteredMountains" approxItemHeight="75px" >
+    <ion-item 
+      *virtualItem="let mountain"
+      routerLink="detail/{{mountain.id}}" 
+      lines="full" 
+      style="padding: 0px;" 
+      class="ion-no-padding"
+
+    >
+      <ion-thumbnail slot="start" class="ion-no-margin" style="size: 75px;">
+        <img [src]="mountain.thumbnailUrl">
+      </ion-thumbnail>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div style="padding-left: 10px;">
+              <div>
+                <b>{{mountain.name}}</b>
+              </div>
+              <div id="mountainDetails">
+                <small id="elevation">{{ mountain.elevation | number }}'</small>
+                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
+              </div>
+              <div *ngIf="mountain.hasRouteClass">
+                <span *ngIf="mountain.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    </ion-virtual-scroll>
+  </ion-list>
+
+
 
 </ion-content>
 

@@ -23,8 +23,8 @@ export class Tab1Page {
   dataReturned: any;
   selectedClasses = [false, false, false, false, false, true]; //5 spot is to denote 'All' being selected
   selectedTHAccess = [false, false, false, false, false, true];
-
   items = Array.from({length: 100000}).map((_, i) => `Item #${i}`);
+  
 
   constructor(
     private climbService: ClimbService,
@@ -34,7 +34,7 @@ export class Tab1Page {
 
   ngOnInit() {
 
-
+    
     this.firestore.collection('mountains', ref => ref.orderBy('name')).snapshotChanges().subscribe(
       data => {
         this.mountains = this.filteredMountains = data.map(e => {

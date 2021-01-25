@@ -8,6 +8,9 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { ResourceModalPageModule } from '../modals/resource-modal/resource-modal.module';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
+
 @NgModule({
   imports: [
     IonicModule,
@@ -15,7 +18,8 @@ import { ResourceModalPageModule } from '../modals/resource-modal/resource-modal
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    ResourceModalPageModule
+    ResourceModalPageModule,
+    ScrollingModule
   ],
   declarations: [Tab1Page]
 })
