@@ -1,42 +1,19 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title class="ion-text-center">Progress</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Progress</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <h2>Total Summits</h2>
-      </ion-col>
-      <ion-col>
-        <h2>{{ totalSummits }}</h2>
-      </ion-col>
-    </ion-row>
-    <ion-row style="padding-bottom: 0px;">
-      <ion-col style="padding-bottom: 0px;">
-        <h2 style="padding-bottom: 0px;">Climbs by Season</h2>
-      </ion-col>
-    </ion-row>
-    <ion-row>
       <ion-col class="ion-text-center">
-        <h3>Spring</h3>
-        <h3>{{ springSummits }}</h3>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <h3>Summer</h3>
-        <h3>{{ summerSummits }}</h3>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <h3>Fall</h3>
-        <h3>{{ fallSummits }}</h3>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <h3>Winter</h3>
-        <h3>{{ winterSummits }}</h3>
+        <h2>Total Summits: {{ totalSummits }}</h2>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <h3 *ngIf="totalSummits == 0" class="ion-text-center" style="padding: 18%;">
+    You don't have any summits yet! <br><br>To save your summits click the <br><b>'Save to Progress'</b><br> button located at the bottom of a mountain's page.
+  </h3>
   <ion-list style="padding: 0px;">
     <ion-virtual-scroll [items]="completedMountains" approxItemHeight="75px">
       <ion-item 
@@ -48,47 +25,7 @@
       >
         <ion-thumbnail slot="start" class="ion-no-margin" style="size: 75px;">
           <img [src]="mountain.thumbnailUrl">
-        </ion-thumbnail>
-        <!--
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              {{ mountain.name }}
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <small id="elevation">{{ mountain.elevation | number }}'</small>
-              <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <div *ngIf="mountain.hasRouteClass">
-                <span style="float: left">
-                  <span *ngIf="mountain.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
-                  <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
-                  <span *ngIf="mountain.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
-                  <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
-                  <span *ngIf="mountain.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
-                  <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
-                  <span *ngIf="mountain.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
-                  <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
-                  <span *ngIf="mountain.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
-                  <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
-                </span>
-              </div>
-            </ion-col>
-            <ion-col>
-              <span>
-                <ion-icon id="checkmarkIcon" color="primary" name="checkmark-circle"></ion-icon>
-                <small id="dateText">{{ mountain.dateCompleted | date }}</small>
-              </span>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      -->
-        
+        </ion-thumbnail>        
         <ion-grid class="ion-no-padding">
           <ion-row style="padding-left: 10px;">
             <ion-col size="10">
@@ -105,7 +42,6 @@
                     <ion-icon id="checkmarkIcon" color="primary" name="checkmark-circle"></ion-icon>
                     <small id="dateText">{{ mountain.dateCompleted | date }}</small>
                   </span>
-                  
                 </span>
               </div>
             </ion-col>
@@ -114,39 +50,4 @@
       </ion-item>
     </ion-virtual-scroll>
   </ion-list>
-
-  <!--
-  <ion-list>
-    <ion-item *ngFor="let mountain of completedMountains | keyvalue" routerLink="detail/{{mountain.value.mountainId}}">
-      <ion-buttons slot="start">
-        <ion-icon slot="start" name="checkmark-circle" (click)="handleBookmark()"></ion-icon>
-      </ion-buttons>
-      <ion-col>
-        <div>
-          <b>{{mountain.value.name}}</b>
-        </div>
-        <div id="mountainDetails">
-          <small id="elevation">{{ mountain.value.elevation | number }}'</small>
-          <small>&nbsp;&nbsp;| {{ mountain.value.range }}</small>
-        </div>
-        <div *ngIf="mountain.value.hasRouteClass">
-          <span *ngIf="mountain.value.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
-          <span *ngIf="!mountain.value.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
-          <span *ngIf="mountain.value.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
-          <span *ngIf="!mountain.value.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
-          <span *ngIf="mountain.value.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
-          <span *ngIf="!mountain.value.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
-          <span *ngIf="mountain.value.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
-          <span *ngIf="!mountain.value.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
-          <span *ngIf="mountain.value.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
-          <span *ngIf="!mountain.value.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
-          <span style="padding-left: 5vh">
-            <ion-icon color="primary" id="checkmarkIcon" name="checkmark-circle"></ion-icon>
-            <small id="dateText">{{ mountain.value.dateCompleted | date }}</small>
-          </span>
-        </div>
-      </ion-col>
-    </ion-item>
-  </ion-list>
-  -->
 </ion-content>
