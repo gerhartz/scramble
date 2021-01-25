@@ -11,11 +11,15 @@ const routes: Routes = [
   {
     path: 'resource-modal',
     loadChildren: () => import('./modals/resource-modal/resource-modal.module').then( m => m.ResourceModalPageModule)
+  },
+  {
+    path: 'progress-modal',
+    loadChildren: () => import('./modals/progress-modal/progress-modal.module').then( m => m.ProgressModalPageModule)
   }
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })

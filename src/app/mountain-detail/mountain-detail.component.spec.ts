@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { MountainDetailComponent } from './mountain-detail.component';
@@ -7,7 +7,7 @@ describe('MountainDetailComponent', () => {
   let component: MountainDetailComponent;
   let fixture: ComponentFixture<MountainDetailComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MountainDetailComponent ],
       imports: [IonicModule.forRoot()]
