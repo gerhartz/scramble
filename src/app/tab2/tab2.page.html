@@ -5,40 +5,57 @@
     </ion-toolbar>
   </ion-header>
 
+  <!--
   <ion-list>
-    <ion-item *ngFor="let mountain of favoriteMountains | keyvalue; index as i" routerLink="tab1/detail/{{mountain.value.mountainId}}">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div></div>
-            <div style="padding-top: 50%; padding-bottom: 50%;">
-              <ion-icon name="bookmark" (click)="handleBookmark()"></ion-icon>
-            </div>
-            <div></div>
-          </ion-col>
-          <ion-col size="10">
-            <div>
-              <b>{{mountain.value.name}}</b>
-            </div>
-            <div id="mountainDetails">
-              <small id="elevation">{{ mountain.value.elevation | number }}'</small>
-              <small>&nbsp;&nbsp;| {{ mountain.value.range }}</small>
-            </div>
-            <div *ngIf="mountain.value.hasRouteClass">
-              <span *ngIf="mountain.value.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
-              <span *ngIf="!mountain.value.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
-              <span *ngIf="mountain.value.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
-              <span *ngIf="!mountain.value.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
-              <span *ngIf="mountain.value.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
-              <span *ngIf="!mountain.value.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
-              <span *ngIf="mountain.value.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
-              <span *ngIf="!mountain.value.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
-              <span *ngIf="mountain.value.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
-              <span *ngIf="!mountain.value.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    <ion-virtual-scroll [items]="favoriteMountains" approxItemHeight="75px">
+      <ion-item *virtualItem="let mountain">
+        {{ mountain.name }}
+      </ion-item>
+    </ion-virtual-scroll>
   </ion-list>
+-->
+  <h3 *ngIf="noFavoriteRoutes" class="ion-text-center" style="padding: 20px;">
+    You don't have any favorites. View a mountain and then click the bookmark icon to add a favorite.
+  </h3>
+  <ion-list>
+    <ion-virtual-scroll [items]="favoriteMountains" approxItemHeight="75px">
+      <ion-item 
+        *virtualItem="let mountain" 
+        routerLink="tab1/detail/{{mountain.mountainId}}" 
+        lines="full"
+        style="padding: 0px" 
+        class="ion-no-padding"
+      >
+        <ion-thumbnail slot="start" class="ion-no-margin" style="size: 75px;">
+          <img [src]="mountain.thumbnailUrl">
+        </ion-thumbnail>
+        <ion-grid>
+          <ion-row style="padding-left: 10px;">
+            <ion-col size="10">
+              <div>
+                <b>{{mountain.name}}</b>
+              </div>
+              <div id="mountainDetails">
+                <small id="elevation">{{ mountain.elevation | number }}'</small>
+                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>
+              </div>
+              <div *ngIf="mountain.hasRouteClass">
+                <span *ngIf="mountain.hasRouteClass[0]" style="background-color: #77d505;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[0]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[1]" style="background-color: #fdcd01;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[1]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[2]" style="background-color: #fda204;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[2]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[3]" style="background-color: #fd5d02;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[3]" style="background-color: #d8d9da;" class="dot"></span>
+                <span *ngIf="mountain.hasRouteClass[4]" style="background-color: #d53732;" class="dot"></span>
+                <span *ngIf="!mountain.hasRouteClass[4]" style="background-color: #d8d9da;" class="dot"></span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-virtual-scroll>
+  </ion-list>
+  
 </ion-content>
