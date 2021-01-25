@@ -1,0 +1,29 @@
+#elevation {
+    background-color: #545556;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+#mountainDetails {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dot {
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+ion-thumbnail {
+    width: 100px;
+    height: 100px;
+}
+
+img {
+    width: auto !important;
+    height: auto !important;
+}

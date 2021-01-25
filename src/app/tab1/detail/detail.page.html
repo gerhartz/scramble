@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Mountain</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon *ngIf="!isFavorite" slot="end" name="bookmark-outline" (click)="handleBookmark()"></ion-icon>
+      <ion-icon *ngIf="isFavorite" slot="end" name="bookmark" (click)="handleBookmark()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-no-padding">
+  </ion-grid>
+  <ion-grid>
+    <ion-row class="ion-text-center">
+      <ion-col>
+        <h2>{{ (mountain | async)?.name }}</h2>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p><b>Elevation:</b></p>
+        <p><b>Prominence:</b></p>
+        <p><b>Range:</b></p>
+        <p *ngIf="(mountain | async)?.is14er"><b>14er Rank:</b></p>
+        <p style="padding-top: 0px;"><b>Location:</b></p>
+      </ion-col>
+      <ion-col>
+        <p>{{ (mountain | async)?.elevation | number }}'</p>
+        <p>{{ (mountain | async)?.prominence | number }}'</p>
+        <p>{{ (mountain | async)?.range }}</p>
+        <p *ngIf="(mountain | async)?.is14er">{{ (mountain|async)?.fourteenerRank }} of 53</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p>{{ (mountain | async)?.location }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Routes</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let route of (mountain | async)?.routes">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="7">
+            <ion-row style="padding-bottom: 2px;"><b>{{ route.name }}</b></ion-row>
+            <ion-row style="padding-top: 2px;"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>
+            <ion-row style="padding-top: 2px"><small>Gain: {{ route.gain | number}}'</small></ion-row>
+          </ion-col>
+          <ion-col class="ion-text-left">
+            <ion-row style="padding-bottom: 2px;">
+              <span style="background-color: #77d505;" class="classDisplay" *ngIf="route.class == 1"><small>Class 1</small></span>
+              <span style="background-color: #fdcd01;" class="classDisplay" *ngIf="route.class == 2"><small>Class 2</small></span>
+              <span style="background-color: #fda204;" class="classDisplay" *ngIf="route.class == 3"><small>Class 3</small></span>
+              <span style="background-color: #fd5d02" class="classDisplay" *ngIf="route.class == 4"><small>Class 4</small></span>
+              <span style="background-color: #d53732;" class="classDisplay" *ngIf="route.class == 5"><small>Class 5</small></span>
+            </ion-row>
+            <ion-row style="padding-top: 2px;">
+              <span *ngIf="route.trailheadAccess == 1" style="background-color: #77d505;" class="classDisplay"><small>Paved Road</small></span>
+              <span *ngIf="route.trailheadAccess == 2" style="background-color: #fdcd01;" class="classDisplay"><small>Easy 2WD Dirt</small></span>
+              <span *ngIf="route.trailheadAccess == 3" style="background-color: #fda204;" class="classDisplay"><small>Rough 2WD Dirt</small></span>
+              <span *ngIf="route.trailheadAccess == 4" style="background-color: #fd5d02;" class="classDisplay"><small>4WD Only</small></span>
+              <span *ngIf="route.trailheadAccess == 5" style="background-color: #d53732;" class="classDisplay"><small>Rough 4WD</small></span>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-list-header>
+      <ion-label>Resources</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let resource of (mountain | async)?.resources">
+      <a href="{{resource.url}}">{{resource.name}}</a>
+    </ion-item>
+    <ion-list-header>
+      <ion-label>Guidebooks</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let guidebook of (mountain | async)?.guidebooks">
+      <a href="{{ guidebook.url}}">{{guidebook.name}}</a>
+    </ion-item>
+  </ion-list>  
+  <ion-button *ngIf="!isCompleted" expand="block" color="secondary" (click)="presentSaveProgressAlert()">
+    Save to Progress
+  </ion-button>
+  <ion-button *ngIf="isCompleted" expand="block" color="primary" (click)="presentRemoveProgressAlert()">
+    Completed
+  </ion-button>
+</ion-content>

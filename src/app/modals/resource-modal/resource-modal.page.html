@@ -1,0 +1,66 @@
+<!-- my-modal.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Sort / Filter</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list-header>Route Class</ion-list-header>
+  <p>
+    <ion-chip [color]="selectedClasses[5] == true ? 'primary' : ''" (click)="selectChip(5)">
+      <ion-label>All Classes</ion-label>
+      <ion-icon *ngIf="selectedClasses[5] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedClasses[0] == true ? 'primary' : ''" (click)="selectChip(0)">
+      <ion-label>Class 1</ion-label>
+      <ion-icon *ngIf="selectedClasses[0] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedClasses[1] == true ? 'primary' : ''" (click)="selectChip(1)">
+      <ion-label>Class 2</ion-label>
+      <ion-icon *ngIf="selectedClasses[1] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedClasses[2] == true ? 'primary' : ''" (click)="selectChip(2)">
+      <ion-label>Class 3</ion-label>
+      <ion-icon *ngIf="selectedClasses[2] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedClasses[3] == true ? 'primary' : ''" (click)="selectChip(3)">
+      <ion-label>Class 4</ion-label>
+      <ion-icon *ngIf="selectedClasses[3] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedClasses[4] == true ? 'primary' : ''" (click)="selectChip(4)">
+      <ion-label>Class 5</ion-label>
+      <ion-icon *ngIf="selectedClasses[4] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+  </p>
+  <ion-list-header>Trailhead Access</ion-list-header>
+  <p>
+    <ion-chip [color]="selectedTHAccess[5] == true ? 'primary' : ''" (click)="selectTrailhead(5)">
+      <ion-label>All Trailheads</ion-label>
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedTHAccess[0] == true ? 'primary' : ''" (click)="selectTrailhead(0)">
+      <ion-label>Paved Road</ion-label>
+      <ion-icon *ngIf="selectedTHAccess[0] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedTHAccess[1] == true ? 'primary' : ''" (click)="selectTrailhead(1)">
+      <ion-label>Easy 2WD Dirt</ion-label>
+      <ion-icon *ngIf="selectedTHAccess[1] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedTHAccess[2] == true ? 'primary' : ''" (click)="selectTrailhead(2)">
+      <ion-label>Rough 2WD Dirt</ion-label>
+      <ion-icon *ngIf="selectedTHAccess[2] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedTHAccess[3] == true ? 'primary' : ''" (click)="selectTrailhead(3)">
+      <ion-label>Easy 4WD</ion-label>
+      <ion-icon *ngIf="selectedTHAccess[3] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedTHAccess[4] == true ? 'primary' : ''" (click)="selectTrailhead(4)">
+      <ion-label>Rough 4WD</ion-label>
+      <ion-icon *ngIf="selectedTHAccess[4] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+  </p>
+</ion-content>
