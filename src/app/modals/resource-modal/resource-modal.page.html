@@ -14,10 +14,6 @@
       <ion-label>All States</ion-label>
       <ion-icon name="close-circle"></ion-icon>
     </ion-chip>
-    <ion-chip [color]="selectedStates[1] == true ? 'primary' : ''" (click)="selectState(1)">
-      <ion-label>Alaska</ion-label>
-      <ion-icon *ngIf="selectedStates[1] == true" name="close-circle"></ion-icon>
-    </ion-chip>
     <ion-chip [color]="selectedStates[2] == true ? 'primary' : ''" (click)="selectState(2)">
       <ion-label>California</ion-label>
       <ion-icon *ngIf="selectedStates[2] == true" name="close-circle"></ion-icon>
