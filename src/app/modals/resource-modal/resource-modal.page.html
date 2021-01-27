@@ -1,15 +1,37 @@
 <!-- my-modal.page.html -->
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Sort / Filter</ion-title>
+    <ion-title>Filter</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">Save</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content class="ion-padding">
-  <ion-list-header>Route Class</ion-list-header>
+  <ion-list-header style="padding-bottom: 0.5em">States</ion-list-header>
+  <p>
+    <ion-chip [color]="selectedStates[0] == true ? 'primary' : ''" (click)="selectState(0)">
+      <ion-label>All States</ion-label>
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedStates[1] == true ? 'primary' : ''" (click)="selectState(1)">
+      <ion-label>Alaska</ion-label>
+      <ion-icon *ngIf="selectedStates[1] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedStates[2] == true ? 'primary' : ''" (click)="selectState(2)">
+      <ion-label>California</ion-label>
+      <ion-icon *ngIf="selectedStates[2] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedStates[3] == true ? 'primary' : ''" (click)="selectState(3)">
+      <ion-label>Colorado</ion-label>
+      <ion-icon *ngIf="selectedStates[3] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+    <ion-chip [color]="selectedStates[4] == true ? 'primary' : ''" (click)="selectState(4)">
+      <ion-label>Washington</ion-label>
+      <ion-icon *ngIf="selectedStates[4] == true" name="close-circle"></ion-icon>
+    </ion-chip>
+  </p>
+  <ion-list-header style="padding-bottom: 0.5em">Route Class</ion-list-header>
   <p>
     <ion-chip [color]="selectedClasses[5] == true ? 'primary' : ''" (click)="selectChip(5)">
       <ion-label>All Classes</ion-label>
@@ -36,7 +58,7 @@
       <ion-icon *ngIf="selectedClasses[4] == true" name="close-circle"></ion-icon>
     </ion-chip>
   </p>
-  <ion-list-header>Trailhead Access</ion-list-header>
+  <ion-list-header style="padding-bottom: 0.5em">Trailhead Access</ion-list-header>
   <p>
     <ion-chip [color]="selectedTHAccess[5] == true ? 'primary' : ''" (click)="selectTrailhead(5)">
       <ion-label>All Trailheads</ion-label>
@@ -55,12 +77,8 @@
       <ion-icon *ngIf="selectedTHAccess[2] == true" name="close-circle"></ion-icon>
     </ion-chip>
     <ion-chip [color]="selectedTHAccess[3] == true ? 'primary' : ''" (click)="selectTrailhead(3)">
-      <ion-label>Easy 4WD</ion-label>
+      <ion-label>4WD Only</ion-label>
       <ion-icon *ngIf="selectedTHAccess[3] == true" name="close-circle"></ion-icon>
-    </ion-chip>
-    <ion-chip [color]="selectedTHAccess[4] == true ? 'primary' : ''" (click)="selectTrailhead(4)">
-      <ion-label>Rough 4WD</ion-label>
-      <ion-icon *ngIf="selectedTHAccess[4] == true" name="close-circle"></ion-icon>
     </ion-chip>
   </p>
 </ion-content>

@@ -4,7 +4,7 @@
       Mountains
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="openModal()">Filter / Sort</ion-button>
+      <ion-button (click)="openModal()">Filter</ion-button>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
@@ -19,6 +19,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen="true" style="padding: 0px" >
+  <h3 style="text-align: center; padding: 20%" *ngIf="filteredMountains.length == 0">No mountains found. Broaden your search criteria.</h3>
   <ion-list style="padding: 0px;">
     <ion-virtual-scroll [items]="filteredMountains" approxItemHeight="75px" >
     <ion-item 

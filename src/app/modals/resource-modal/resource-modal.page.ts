@@ -13,6 +13,7 @@ export class ResourceModalPage implements OnInit {
 
   selectedClasses: any[];
   selectedTHAccess: any[];      // Paved 2WD...Easy 2WD Dirt...Rough 2WD Dirt...Easy 4WD...Severe 4WD
+  selectedStates: any[];  // 0 = All, 1 = Alaska, 2 = California, 3 = Colorado, 4 = Washington
 
   constructor(
     private modalController: ModalController,
@@ -25,14 +26,15 @@ export class ResourceModalPage implements OnInit {
     this.modalTitle = this.navParams.data.paramTitle;
     this.selectedClasses = this.navParams.data.selectedClasses;
     this.selectedTHAccess = this.navParams.data.selectedTHAccess;
-    console.log('inside resource modal. selected classes: ', this.selectedClasses);
+    this.selectedStates = this.navParams.data.selectedStates;
   }
 
   async closeModal() {
     let dataToReturn = {
       onClosedData: 'Wrapped up!',
       selectedClasses: this.selectedClasses,
-      selectedTHAccess: this.selectedTHAccess
+      selectedTHAccess: this.selectedTHAccess,
+      selectedStates: this.selectedStates
     }
 
     await this.modalController.dismiss(dataToReturn);
@@ -136,6 +138,55 @@ export class ResourceModalPage implements OnInit {
     
     // Standard select. Assumes 'All' is deselected and another specific class is already selected
     this.selectedTHAccess[trailheadNum] = !this.selectedTHAccess[trailheadNum];
+  }
+
+  selectState(stateNum) {
+    console.log('state num: ', stateNum);
+    console.log('states array: ', this.selectedStates);
+    
+    //Do not allow 'All' to be deselected if no other options are selected
+    if(stateNum == 0 && this.selectedStates.indexOf(true,1) == -1){
+      return;
+    }
+
+    // Get the new value that will be inserted into trailhead access array if allowed to proceed
+    let newStateVal = !this.selectedStates[stateNum];
+
+    // Going from only 'All' to a single state
+    if(stateNum != 0 && this.selectedStates.indexOf(true,1) == -1 && newStateVal){
+      this.selectedStates[stateNum] = newStateVal;
+      this.selectedStates[0] = false;
+      return;
+    }
+
+    // Select 'All' after other states were individually selected
+    if(stateNum == 0 && this.selectedStates[0] == false){
+      console.log('here');
+      this.selectedStates[0] = true;
+      this.selectedStates.fill(false, 1);
+      return;
+    }
+
+    // Deselecting last state should turn on 'All'
+    if(stateNum != 0 && this.statesArrayWillBecomeEmpty(stateNum) && !newStateVal){
+      this.selectedStates[stateNum] = !this.selectedStates[stateNum];
+      this.selectedStates[0] = true;
+      return;
+    }
+
+    this.selectedStates[stateNum] = !this.selectedStates[stateNum];
+  }
+
+  statesArrayWillBecomeEmpty(stateNum) {
+    let willBecomeEmpty = true;
+    for(let i = 1; i < this.selectedStates.length; i++){
+      //Look for case where selectedState is true and is not about to be changed (stateNum)
+      if(i != stateNum && this.selectedStates[i] == true){
+        willBecomeEmpty = false;
+        break;
+      }
+    }
+    return willBecomeEmpty;
   }
 }
 

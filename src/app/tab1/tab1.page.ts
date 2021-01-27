@@ -23,6 +23,7 @@ export class Tab1Page {
   dataReturned: any;
   selectedClasses = [false, false, false, false, false, true]; //5 spot is to denote 'All' being selected
   selectedTHAccess = [false, false, false, false, false, true];
+  selectedStates = [true, false, false, false]; //0 = all, 1 = Alaska, 2 = California, 3 = Colorado, 4 = Washington
   
 
   constructor(
@@ -62,7 +63,8 @@ export class Tab1Page {
         "paramID": 123,
         "paramTitle": "Test Title",
         "selectedClasses": this.selectedClasses,
-        "selectedTHAccess": this.selectedTHAccess
+        "selectedTHAccess": this.selectedTHAccess,
+        "selectedStates": this.selectedStates
       }
     });
 
@@ -83,6 +85,7 @@ export class Tab1Page {
 
       let classMatch = false;
       let trailheadMatch = false;
+      let stateMatch = false;
 
       if(this.selectedClasses[5] == true){
         classMatch = true;
@@ -92,11 +95,31 @@ export class Tab1Page {
         trailheadMatch = true;
       }
 
-      if(classMatch && trailheadMatch){
+      let mountainState = mountain.state;
+      if(this.selectedStates[0] == true){     // any state will do
+        stateMatch = true;
+      } else {
+        if(mountainState == 'AK' && this.selectedStates[1] == true){
+          stateMatch = true;
+        } else if (mountainState == 'CA' && this.selectedStates[2] == true){
+          stateMatch = true;
+        } else if (mountainState == 'CO' && this.selectedStates[3] == true){
+          stateMatch = true;
+        } else if (mountainState == 'WA' && this.selectedStates[4] == true){
+          stateMatch = true;
+        }
+      }
+
+
+      if(classMatch && trailheadMatch && stateMatch){
         return true;
       }
 
       if(!mountain.routes){
+        return false;
+      }
+
+      if(!stateMatch){
         return false;
       }
 
