@@ -61,6 +61,7 @@
           </ion-col>
           <ion-col class="ion-text-left">
             <ion-row style="padding-bottom: 2px;">
+              <span style="background-color: gray;" class="classDisplay" *ngIf="!route.class"><small>Class ?</small></span>
               <span style="background-color: #77d505;" class="classDisplay" *ngIf="route.class == 1"><small>Class 1</small></span>
               <span style="background-color: #fdcd01;" class="classDisplay" *ngIf="route.class == 2"><small>Class 2</small></span>
               <span style="background-color: #fda204;" class="classDisplay" *ngIf="route.class == 3"><small>Class 3</small></span>
