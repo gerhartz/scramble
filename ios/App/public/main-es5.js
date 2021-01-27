@@ -470,17 +470,6 @@
             return m.ResourceModalPageModule;
           });
         }
-      }, {
-        path: 'progress-modal',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | modals-progress-modal-progress-modal-module */
-          "modals-progress-modal-progress-modal-module").then(__webpack_require__.bind(null,
-          /*! ./modals/progress-modal/progress-modal.module */
-          "6g9r")).then(function (m) {
-            return m.ProgressModalPageModule;
-          });
-        }
       }];
 
       var AppRoutingModule = function AppRoutingModule() {

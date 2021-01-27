@@ -59,17 +59,6 @@
       var routes = [{
         path: '',
         component: _detail_page__WEBPACK_IMPORTED_MODULE_3__["DetailPage"]
-      }, {
-        path: 'route',
-        loadChildren: function loadChildren() {
-          return __webpack_require__.e(
-          /*! import() | route-route-module */
-          "default~route-route-module~tab1-detail-route-route-module").then(__webpack_require__.bind(null,
-          /*! ./route/route.module */
-          "selH")).then(function (m) {
-            return m.RoutePageModule;
-          });
-        }
       }];
 
       var DetailPageRoutingModule = function DetailPageRoutingModule() {
@@ -351,69 +340,68 @@
                       return _context3.abrupt("return", false);
 
                     case 11:
-                      console.log('spot A: ', favoriteMountains);
                       _iterator = _createForOfIteratorHelper(favoriteMountains);
-                      _context3.prev = 13;
+                      _context3.prev = 12;
 
                       _iterator.s();
 
-                    case 15:
+                    case 14:
                       if ((_step = _iterator.n()).done) {
-                        _context3.next = 22;
+                        _context3.next = 21;
                         break;
                       }
 
                       favorite = _step.value;
 
                       if (!(favorite.mountainId == id)) {
-                        _context3.next = 20;
+                        _context3.next = 19;
                         break;
                       }
 
                       this.isFavorite = true;
                       return _context3.abrupt("return", true);
 
-                    case 20:
-                      _context3.next = 15;
+                    case 19:
+                      _context3.next = 14;
                       break;
 
-                    case 22:
-                      _context3.next = 27;
+                    case 21:
+                      _context3.next = 26;
                       break;
 
-                    case 24:
-                      _context3.prev = 24;
-                      _context3.t0 = _context3["catch"](13);
+                    case 23:
+                      _context3.prev = 23;
+                      _context3.t0 = _context3["catch"](12);
 
                       _iterator.e(_context3.t0);
 
-                    case 27:
-                      _context3.prev = 27;
+                    case 26:
+                      _context3.prev = 26;
 
                       _iterator.f();
 
-                      return _context3.finish(27);
+                      return _context3.finish(26);
 
-                    case 30:
+                    case 29:
                       console.log('here');
                       this.isFavorite = false;
                       return _context3.abrupt("return", false);
 
-                    case 33:
-                      _context3.next = 38;
+                    case 32:
+                      _context3.next = 37;
                       break;
 
-                    case 35:
-                      _context3.prev = 35;
+                    case 34:
+                      _context3.prev = 34;
                       _context3.t1 = _context3["catch"](2);
                       console.log('Error in checkIfFavorites.', _context3.t1);
 
-                    case 38:
+                    case 37:
                     case "end":
                       return _context3.stop();
                   }
                 }
-              }, _callee3, this, [[2, 35], [13, 24, 27, 30]]);
+              }, _callee3, this, [[2, 34], [12, 23, 26, 29]]);
             }));
           }
         }, {
@@ -434,78 +422,77 @@
 
                     case 5:
                       completedMountains = _context4.sent;
-                      console.log('completed: ', completedMountains); // No favorites, return false
 
                       if (!(completedMountains == null)) {
-                        _context4.next = 12;
+                        _context4.next = 11;
                         break;
                       }
 
                       this.isCompleted = false;
                       return _context4.abrupt("return", false);
 
-                    case 12:
+                    case 11:
                       _iterator2 = _createForOfIteratorHelper(completedMountains);
-                      _context4.prev = 13;
+                      _context4.prev = 12;
 
                       _iterator2.s();
 
-                    case 15:
+                    case 14:
                       if ((_step2 = _iterator2.n()).done) {
-                        _context4.next = 22;
+                        _context4.next = 21;
                         break;
                       }
 
                       mountain = _step2.value;
 
                       if (!(mountain.mountainId == id)) {
-                        _context4.next = 20;
+                        _context4.next = 19;
                         break;
                       }
 
                       this.isCompleted = true;
                       return _context4.abrupt("return", true);
 
-                    case 20:
-                      _context4.next = 15;
+                    case 19:
+                      _context4.next = 14;
                       break;
 
-                    case 22:
-                      _context4.next = 27;
+                    case 21:
+                      _context4.next = 26;
                       break;
 
-                    case 24:
-                      _context4.prev = 24;
-                      _context4.t0 = _context4["catch"](13);
+                    case 23:
+                      _context4.prev = 23;
+                      _context4.t0 = _context4["catch"](12);
 
                       _iterator2.e(_context4.t0);
 
-                    case 27:
-                      _context4.prev = 27;
+                    case 26:
+                      _context4.prev = 26;
 
                       _iterator2.f();
 
-                      return _context4.finish(27);
+                      return _context4.finish(26);
 
-                    case 30:
+                    case 29:
                       this.isCompleted = false;
                       return _context4.abrupt("return", false);
 
-                    case 32:
-                      _context4.next = 37;
+                    case 31:
+                      _context4.next = 36;
                       break;
 
-                    case 34:
-                      _context4.prev = 34;
+                    case 33:
+                      _context4.prev = 33;
                       _context4.t1 = _context4["catch"](2);
                       console.log('Error in checkIfFavorites.', _context4.t1);
 
-                    case 37:
+                    case 36:
                     case "end":
                       return _context4.stop();
                   }
                 }
-              }, _callee4, this, [[2, 34], [13, 24, 27, 30]]);
+              }, _callee4, this, [[2, 33], [12, 23, 26, 29]]);
             }));
           } // Checks if current mountain is in User's local storage list of favorites based on ID
           // Sets the isFavorite flag
@@ -537,36 +524,33 @@
                       return _context5.abrupt("return", false);
 
                     case 11:
-                      console.log('spot A: ', favoriteMountains);
-
                       if (!(favoriteMountains[id] != undefined)) {
-                        _context5.next = 18;
+                        _context5.next = 16;
                         break;
                       }
 
-                      console.log('favorite mountain found!');
                       this.isFavorite = true;
                       return _context5.abrupt("return", true);
 
-                    case 18:
+                    case 16:
                       this.isFavorite = false;
                       return _context5.abrupt("return", false);
 
-                    case 20:
-                      _context5.next = 25;
+                    case 18:
+                      _context5.next = 23;
                       break;
 
-                    case 22:
-                      _context5.prev = 22;
+                    case 20:
+                      _context5.prev = 20;
                       _context5.t0 = _context5["catch"](2);
                       console.log('Error in checkIfFavorites.', _context5.t0);
 
-                    case 25:
+                    case 23:
                     case "end":
                       return _context5.stop();
                   }
                 }
-              }, _callee5, this, [[2, 22]]);
+              }, _callee5, this, [[2, 20]]);
             }));
           }
         }, {
@@ -578,115 +562,43 @@
             this.mountainDoc = this.afs.doc('mountains/' + id);
             this.mountain = this.mountainDoc.valueChanges();
             this.mountain.subscribe(function (data) {
-              console.log('data: ', data);
               _this.mountainName = data.name;
               _this.mountainElevation = data.elevation;
               _this.resources = data.resources;
               _this.hasRouteClass = data.hasRouteClass;
               _this.range = data.range;
               _this.thumbnailUrl = data.thumbnailUrl;
-
-              if (_this.thumbnailUrl) {//this.getImage(this.thumbnailUrl);
-              }
             });
             this.routeList = this.afs.doc('mountains/' + id).collection('routes').valueChanges();
             this.resources = this.afs.doc('mountains/' + id).collection('resources').valueChanges();
-            this.guidebooks = this.afs.doc('mountains/' + id).collection('guidebooks').valueChanges(); //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
+            this.guidebooks = this.afs.doc('mountains/' + id).collection('guidebooks').valueChanges();
           }
         }, {
           key: "handleBookmark",
           value: function handleBookmark() {
             if (this.isFavorite) {
-              console.log('handle bookmrk, delete'); //this.deleteFavorite();
-
               this.deleteFavoriteMountain();
             } else {
-              //this.addFavorite();
               this.addFavoriteMountain();
             }
           }
         }, {
-          key: "addFavorite",
-          value: function addFavorite() {
+          key: "addFavoriteMountain",
+          value: function addFavoriteMountain() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-              var favoriteMountains, id, mountainInfo, newFavoriteMountains;
+              var favoriteMountains, id, mountainDetails, newFavorites;
               return regeneratorRuntime.wrap(function _callee6$(_context6) {
                 while (1) {
                   switch (_context6.prev = _context6.next) {
                     case 0:
-                      favoriteMountains = {};
-                      id = this.route.snapshot.paramMap.get('id');
-                      console.log('addFavorite called and name: ', this.mountainName);
-                      /*let mountainInfo = await this.afs.collection('mountains').doc(id).get().pipe()
-                      if(!mountainInfo) {
-                        console.log('no mountain info');
-                      } else {
-                        console.log('mountain info: ', mountainInfo.data());
-                      }
-                               console.log('mountain info: ', mountainInfo);
-                      */
-
-                      _context6.prev = 3;
-                      _context6.next = 6;
-                      return this.storage.get('favoriteMountains');
-
-                    case 6:
-                      favoriteMountains = _context6.sent;
-
-                      // Check if no favorites
-                      if (favoriteMountains == null) {
-                        favoriteMountains = {};
-                      }
-
-                      mountainInfo = {
-                        name: this.mountainName,
-                        elevation: this.mountainElevation
-                      }; //Add
-
-                      favoriteMountains[id] = mountainInfo;
-                      _context6.next = 12;
-                      return this.storage.set('favoriteMountains', favoriteMountains);
-
-                    case 12:
-                      newFavoriteMountains = _context6.sent;
-                      alert('Added to Favorites!');
-                      console.log('new favs: ', newFavoriteMountains);
-                      this.checkIfFavorite();
-                      return _context6.abrupt("return", true);
-
-                    case 19:
-                      _context6.prev = 19;
-                      _context6.t0 = _context6["catch"](3);
-                      console.log(_context6.t0);
-                      return _context6.abrupt("return", false);
-
-                    case 23:
-                    case "end":
-                      return _context6.stop();
-                  }
-                }
-              }, _callee6, this, [[3, 19]]);
-            }));
-          }
-        }, {
-          key: "addFavoriteMountain",
-          value: function addFavoriteMountain() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-              var favoriteMountains, id, mountainDetails, newFavorites;
-              return regeneratorRuntime.wrap(function _callee7$(_context7) {
-                while (1) {
-                  switch (_context7.prev = _context7.next) {
-                    case 0:
-                      console.log('add fav mtn called');
                       favoriteMountains = [];
                       id = this.route.snapshot.paramMap.get('id');
-                      _context7.prev = 3;
-                      _context7.next = 6;
+                      _context6.prev = 2;
+                      _context6.next = 5;
                       return this.storage.get('favoriteMountains');
 
-                    case 6:
-                      favoriteMountains = _context7.sent;
-                      console.log('fav mtns: ', favoriteMountains);
+                    case 5:
+                      favoriteMountains = _context6.sent;
 
                       if (favoriteMountains == null) {
                         favoriteMountains = [];
@@ -701,48 +613,47 @@
                         thumbnailUrl: this.thumbnailUrl
                       };
                       favoriteMountains.push(mountainDetails);
-                      _context7.next = 13;
+                      _context6.next = 11;
                       return this.storage.set('favoriteMountains', favoriteMountains);
 
-                    case 13:
-                      newFavorites = _context7.sent;
-                      console.log('new favorites: ', newFavorites);
-                      _context7.next = 20;
+                    case 11:
+                      newFavorites = _context6.sent;
+                      _context6.next = 17;
                       break;
 
-                    case 17:
-                      _context7.prev = 17;
-                      _context7.t0 = _context7["catch"](3);
-                      console.log('Error in addFavoriteMountain.', _context7.t0);
+                    case 14:
+                      _context6.prev = 14;
+                      _context6.t0 = _context6["catch"](2);
+                      console.log('Error in addFavoriteMountain.', _context6.t0);
 
-                    case 20:
+                    case 17:
                       this.checkIfMountainIsFavorite();
 
-                    case 21:
+                    case 18:
                     case "end":
-                      return _context7.stop();
+                      return _context6.stop();
                   }
                 }
-              }, _callee7, this, [[3, 17]]);
+              }, _callee6, this, [[2, 14]]);
             }));
           }
         }, {
           key: "deleteFavoriteMountain",
           value: function deleteFavoriteMountain() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
               var favoriteMountains, id, newFavorites, results;
-              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              return regeneratorRuntime.wrap(function _callee7$(_context7) {
                 while (1) {
-                  switch (_context8.prev = _context8.next) {
+                  switch (_context7.prev = _context7.next) {
                     case 0:
-                      _context8.prev = 0;
+                      _context7.prev = 0;
                       favoriteMountains = [];
                       id = this.route.snapshot.paramMap.get('id');
-                      _context8.next = 5;
+                      _context7.next = 5;
                       return this.storage.get('favoriteMountains');
 
                     case 5:
-                      favoriteMountains = _context8.sent;
+                      favoriteMountains = _context7.sent;
 
                       if (favoriteMountains == null) {
                         favoriteMountains = [];
@@ -751,93 +662,47 @@
                       newFavorites = favoriteMountains.filter(function (favorite) {
                         return favorite.mountainId != id;
                       });
-                      _context8.next = 10;
+                      _context7.next = 10;
                       return this.storage.set('favoriteMountains', newFavorites);
 
                     case 10:
-                      results = _context8.sent;
-                      console.log('results: ', results);
-                      _context8.next = 17;
+                      results = _context7.sent;
+                      _context7.next = 16;
                       break;
 
-                    case 14:
-                      _context8.prev = 14;
-                      _context8.t0 = _context8["catch"](0);
-                      console.log('Error in deleteFavoriteMountain(). ', _context8.t0);
+                    case 13:
+                      _context7.prev = 13;
+                      _context7.t0 = _context7["catch"](0);
+                      console.log('Error in deleteFavoriteMountain(). ', _context7.t0);
 
-                    case 17:
+                    case 16:
                       this.checkIfMountainIsFavorite();
 
-                    case 18:
-                    case "end":
-                      return _context8.stop();
-                  }
-                }
-              }, _callee8, this, [[0, 14]]);
-            }));
-          } // Replaces the favorite list with a new favorite list after removing the current mountain ID
-          // Will only be called if the isFavorite == true
-          // Assumes favorite list exists if called
-
-        }, {
-          key: "deleteFavorite",
-          value: function deleteFavorite() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-              var favoriteMountains, id, newResults;
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
-                while (1) {
-                  switch (_context9.prev = _context9.next) {
-                    case 0:
-                      favoriteMountains = [];
-                      id = this.route.snapshot.paramMap.get('id');
-                      _context9.prev = 2;
-                      _context9.next = 5;
-                      return this.storage.get('favoriteMountains');
-
-                    case 5:
-                      favoriteMountains = _context9.sent;
-                      delete favoriteMountains[id];
-                      _context9.next = 9;
-                      return this.storage.set('favoriteMountains', favoriteMountains);
-
-                    case 9:
-                      newResults = _context9.sent;
-                      alert('Removed from Favorites.');
-                      this.checkIfFavorite();
-                      _context9.next = 17;
-                      break;
-
-                    case 14:
-                      _context9.prev = 14;
-                      _context9.t0 = _context9["catch"](2);
-                      console.log('Error in deleteFavorite.', _context9.t0);
-
                     case 17:
                     case "end":
-                      return _context9.stop();
+                      return _context7.stop();
                   }
                 }
-              }, _callee9, this, [[2, 14]]);
+              }, _callee7, this, [[0, 13]]);
             }));
           }
         }, {
           key: "saveMountainToProgress",
           value: function saveMountainToProgress(completedDate) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
               var completedMountains, id, mountainDetails, newFavorites;
-              return regeneratorRuntime.wrap(function _callee10$(_context10) {
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
                 while (1) {
-                  switch (_context10.prev = _context10.next) {
+                  switch (_context8.prev = _context8.next) {
                     case 0:
                       completedMountains = [];
                       id = this.route.snapshot.paramMap.get('id');
-                      _context10.prev = 2;
-                      _context10.next = 5;
+                      _context8.prev = 2;
+                      _context8.next = 5;
                       return this.storage.get('completedMountains');
 
                     case 5:
-                      completedMountains = _context10.sent;
-                      console.log('fav mtns: ', completedMountains);
+                      completedMountains = _context8.sent;
 
                       if (completedMountains == null) {
                         completedMountains = [];
@@ -852,49 +717,48 @@
                         dateCompleted: completedDate,
                         thumbnailUrl: this.thumbnailUrl
                       };
-                      console.log('mountain details to save: ', mountainDetails);
                       completedMountains.push(mountainDetails);
-                      _context10.next = 13;
+                      _context8.next = 11;
                       return this.storage.set('completedMountains', completedMountains);
 
-                    case 13:
-                      newFavorites = _context10.sent;
-                      _context10.next = 19;
+                    case 11:
+                      newFavorites = _context8.sent;
+                      _context8.next = 17;
                       break;
 
-                    case 16:
-                      _context10.prev = 16;
-                      _context10.t0 = _context10["catch"](2);
-                      console.log('Error in addCompleteMountain.', _context10.t0);
+                    case 14:
+                      _context8.prev = 14;
+                      _context8.t0 = _context8["catch"](2);
+                      console.log('Error in addCompleteMountain.', _context8.t0);
 
-                    case 19:
+                    case 17:
                       this.checkIfMountainIsCompleted();
 
-                    case 20:
+                    case 18:
                     case "end":
-                      return _context10.stop();
+                      return _context8.stop();
                   }
                 }
-              }, _callee10, this, [[2, 16]]);
+              }, _callee8, this, [[2, 14]]);
             }));
           }
         }, {
           key: "removeMountainFromProgress",
           value: function removeMountainFromProgress() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
               var completedMountains, id, newCompletedMountains, results;
-              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
                 while (1) {
-                  switch (_context11.prev = _context11.next) {
+                  switch (_context9.prev = _context9.next) {
                     case 0:
-                      _context11.prev = 0;
+                      _context9.prev = 0;
                       completedMountains = [];
                       id = this.route.snapshot.paramMap.get('id');
-                      _context11.next = 5;
+                      _context9.next = 5;
                       return this.storage.get('completedMountains');
 
                     case 5:
-                      completedMountains = _context11.sent;
+                      completedMountains = _context9.sent;
 
                       if (completedMountains == null) {
                         completedMountains = [];
@@ -903,41 +767,40 @@
                       newCompletedMountains = completedMountains.filter(function (mountain) {
                         return mountain.mountainId != id;
                       });
-                      _context11.next = 10;
+                      _context9.next = 10;
                       return this.storage.set('completedMountains', newCompletedMountains);
 
                     case 10:
-                      results = _context11.sent;
-                      console.log('results: ', results);
-                      _context11.next = 17;
+                      results = _context9.sent;
+                      _context9.next = 16;
                       break;
 
-                    case 14:
-                      _context11.prev = 14;
-                      _context11.t0 = _context11["catch"](0);
-                      console.log('Error in deleteFavoriteMountain(). ', _context11.t0);
+                    case 13:
+                      _context9.prev = 13;
+                      _context9.t0 = _context9["catch"](0);
+                      console.log('Error in deleteFavoriteMountain(). ', _context9.t0);
 
-                    case 17:
+                    case 16:
                       this.checkIfMountainIsCompleted();
 
-                    case 18:
+                    case 17:
                     case "end":
-                      return _context11.stop();
+                      return _context9.stop();
                   }
                 }
-              }, _callee11, this, [[0, 14]]);
+              }, _callee9, this, [[0, 13]]);
             }));
           }
         }, {
           key: "presentSaveProgressAlert",
           value: function presentSaveProgressAlert() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
               var _this2 = this;
 
               var today, alert;
-              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
                 while (1) {
-                  switch (_context12.prev = _context12.next) {
+                  switch (_context10.prev = _context10.next) {
                     case 0:
                       today = new Date(Date.now()).toISOString();
                       console.log('today: ', today);
@@ -965,30 +828,30 @@
                           }
                         }]
                       });
-                      _context12.next = 7;
+                      _context10.next = 7;
                       return alert;
 
                     case 7:
-                      _context12.sent.present();
+                      _context10.sent.present();
 
                     case 8:
                     case "end":
-                      return _context12.stop();
+                      return _context10.stop();
                   }
                 }
-              }, _callee12, this);
+              }, _callee10, this);
             }));
           }
         }, {
           key: "presentRemoveProgressAlert",
           value: function presentRemoveProgressAlert() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
               var _this3 = this;
 
               var alert;
-              return regeneratorRuntime.wrap(function _callee13$(_context13) {
+              return regeneratorRuntime.wrap(function _callee11$(_context11) {
                 while (1) {
-                  switch (_context13.prev = _context13.next) {
+                  switch (_context11.prev = _context11.next) {
                     case 0:
                       alert = this.alertController.create({
                         header: 'Delete?',
@@ -1006,18 +869,18 @@
                           }
                         }]
                       });
-                      _context13.next = 3;
+                      _context11.next = 3;
                       return alert;
 
                     case 3:
-                      _context13.sent.present();
+                      _context11.sent.present();
 
                     case 4:
                     case "end":
-                      return _context13.stop();
+                      return _context11.stop();
                   }
                 }
-              }, _callee13, this);
+              }, _callee11, this);
             }));
           }
         }]);
@@ -1067,7 +930,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Mountain</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/tabs/tab1\"></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-icon *ngIf=\"!isFavorite\" slot=\"end\" name=\"bookmark-outline\" (click)=\"handleBookmark()\"></ion-icon>\n      <ion-icon *ngIf=\"isFavorite\" slot=\"end\" name=\"bookmark\" (click)=\"handleBookmark()\"></ion-icon>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid class=\"ion-no-padding\">\n  </ion-grid>\n  <ion-grid>\n    <ion-row class=\"ion-text-center\">\n      <ion-col>\n        <h2>{{ (mountain | async)?.name }}</h2>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p><b>Elevation:</b></p>\n        <p><b>Prominence:</b></p>\n        <p><b>Range:</b></p>\n        <p *ngIf=\"(mountain | async)?.is14er\"><b>14er Rank:</b></p>\n        <p style=\"padding-top: 0px;\"><b>Location:</b></p>\n      </ion-col>\n      <ion-col>\n        <p>{{ (mountain | async)?.elevation | number }}'</p>\n        <p>{{ (mountain | async)?.prominence | number }}'</p>\n        <p>{{ (mountain | async)?.range }}</p>\n        <p *ngIf=\"(mountain | async)?.is14er\">{{ (mountain|async)?.fourteenerRank }} of 53</p>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p>{{ (mountain | async)?.location }}</p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list>\n    <ion-list-header>\n      <ion-label>Routes</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let route of (mountain | async)?.routes\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"7\">\n            <ion-row style=\"padding-bottom: 2px;\"><b>{{ route.name }}</b></ion-row>\n            <ion-row style=\"padding-top: 2px;\"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>\n            <ion-row style=\"padding-top: 2px\"><small>Gain: {{ route.gain | number}}'</small></ion-row>\n          </ion-col>\n          <ion-col class=\"ion-text-left\">\n            <ion-row style=\"padding-bottom: 2px;\">\n              <span style=\"background-color: #77d505;\" class=\"classDisplay\" *ngIf=\"route.class == 1\"><small>Class 1</small></span>\n              <span style=\"background-color: #fdcd01;\" class=\"classDisplay\" *ngIf=\"route.class == 2\"><small>Class 2</small></span>\n              <span style=\"background-color: #fda204;\" class=\"classDisplay\" *ngIf=\"route.class == 3\"><small>Class 3</small></span>\n              <span style=\"background-color: #fd5d02\" class=\"classDisplay\" *ngIf=\"route.class == 4\"><small>Class 4</small></span>\n              <span style=\"background-color: #d53732;\" class=\"classDisplay\" *ngIf=\"route.class == 5\"><small>Class 5</small></span>\n            </ion-row>\n            <ion-row style=\"padding-top: 2px;\">\n              <span *ngIf=\"route.trailheadAccess == 1\" style=\"background-color: #77d505;\" class=\"classDisplay\"><small>Paved Road</small></span>\n              <span *ngIf=\"route.trailheadAccess == 2\" style=\"background-color: #fdcd01;\" class=\"classDisplay\"><small>Easy 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 3\" style=\"background-color: #fda204;\" class=\"classDisplay\"><small>Rough 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 4\" style=\"background-color: #fd5d02;\" class=\"classDisplay\"><small>4WD Only</small></span>\n              <span *ngIf=\"route.trailheadAccess == 5\" style=\"background-color: #d53732;\" class=\"classDisplay\"><small>Rough 4WD</small></span>\n            </ion-row>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Resources</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let resource of (mountain | async)?.resources\">\n      <a href=\"{{resource.url}}\">{{resource.name}}</a>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Guidebooks</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let guidebook of (mountain | async)?.guidebooks\">\n      <a href=\"{{ guidebook.url}}\">{{guidebook.name}}</a>\n    </ion-item>\n  </ion-list>  \n  <ion-button *ngIf=\"!isCompleted\" expand=\"block\" color=\"secondary\" (click)=\"presentSaveProgressAlert()\">\n    Save to Progress\n  </ion-button>\n  <ion-button *ngIf=\"isCompleted\" expand=\"block\" color=\"primary\" (click)=\"presentRemoveProgressAlert()\">\n    Completed\n  </ion-button>\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Mountain</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/tabs/tab1\"></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-icon *ngIf=\"!isFavorite\" slot=\"end\" name=\"bookmark-outline\" (click)=\"handleBookmark()\"></ion-icon>\n      <ion-icon *ngIf=\"isFavorite\" slot=\"end\" name=\"bookmark\" (click)=\"handleBookmark()\"></ion-icon>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-grid class=\"ion-no-padding\">\n  </ion-grid>\n  <ion-grid>\n    <ion-row class=\"ion-text-center\">\n      <ion-col>\n        <h2>{{ (mountain | async)?.name }}</h2>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p><b>Elevation:</b></p>\n        <p><b>Prominence:</b></p>\n        <p><b>Range:</b></p>\n        <p *ngIf=\"(mountain | async)?.is14er\"><b>14er Rank:</b></p>\n        <p style=\"padding-top: 0px;\"><b>Location:</b></p>\n      </ion-col>\n      <ion-col>\n        <p>{{ (mountain | async)?.elevation | number }}'</p>\n        <p>{{ (mountain | async)?.prominence | number }}'</p>\n        <p>{{ (mountain | async)?.range }}</p>\n        <p *ngIf=\"(mountain | async)?.is14er\">{{ (mountain|async)?.fourteenerRank }} of 53</p>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p>{{ (mountain | async)?.location }}</p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list>\n    <ion-list-header>\n      <ion-label>Routes</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let route of (mountain | async)?.routes\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"7\">\n            <ion-row style=\"padding-bottom: 2px;\"><b>{{ route.name }}</b></ion-row>\n            <ion-row style=\"padding-top: 2px;\"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>\n            <ion-row style=\"padding-top: 2px\"><small>Gain: {{ route.gain | number}}'</small></ion-row>\n          </ion-col>\n          <ion-col class=\"ion-text-left\">\n            <ion-row style=\"padding-bottom: 2px;\">\n              <span style=\"background-color: #77d505;\" class=\"classDisplay\" *ngIf=\"route.class == 1\"><small>Class 1</small></span>\n              <span style=\"background-color: #fdcd01;\" class=\"classDisplay\" *ngIf=\"route.class == 2\"><small>Class 2</small></span>\n              <span style=\"background-color: #fda204;\" class=\"classDisplay\" *ngIf=\"route.class == 3\"><small>Class 3</small></span>\n              <span style=\"background-color: #fd5d02\" class=\"classDisplay\" *ngIf=\"route.class == 4\"><small>Class 4</small></span>\n              <span style=\"background-color: #d53732;\" class=\"classDisplay\" *ngIf=\"route.class == 5\"><small>Class 5</small></span>\n            </ion-row>\n            <ion-row style=\"padding-top: 2px;\">\n              <span *ngIf=\"route.trailheadAccess == 1\" style=\"background-color: #77d505;\" class=\"classDisplay\"><small>Paved Road</small></span>\n              <span *ngIf=\"route.trailheadAccess == 2\" style=\"background-color: #fdcd01;\" class=\"classDisplay\"><small>Easy 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 3\" style=\"background-color: #fda204;\" class=\"classDisplay\"><small>Rough 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 4\" style=\"background-color: #fd5d02;\" class=\"classDisplay\"><small>4WD Only</small></span>\n              <span *ngIf=\"route.trailheadAccess == 5\" style=\"background-color: #d53732;\" class=\"classDisplay\"><small>Rough 4WD</small></span>\n            </ion-row>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Resources</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let resource of (mountain | async)?.resources\">\n      <a *ngIf=\"resource.url != ''\" href=\"{{resource.url}}\">{{resource.name}}</a>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Guidebooks</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let guidebook of (mountain | async)?.guidebooks\">\n      <a href=\"{{ guidebook.url}}\">{{guidebook.name}}</a>\n    </ion-item>\n  </ion-list>  \n  <ion-button *ngIf=\"!isCompleted\" expand=\"block\" color=\"secondary\" (click)=\"presentSaveProgressAlert()\">\n    Save to Progress\n  </ion-button>\n  <ion-button *ngIf=\"isCompleted\" expand=\"block\" color=\"primary\" (click)=\"presentRemoveProgressAlert()\">\n    Completed\n  </ion-button>\n</ion-content>";
       /***/
     }
   }]);

@@ -127,39 +127,27 @@ const routes = [
         children: [
             {
                 path: 'tab1',
-                loadChildren: () => Promise.all(/*! import() | tab1-tab1-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~modals-resource-modal-resource-modal-module~tab1-tab1-module"), __webpack_require__.e("common"), __webpack_require__.e("tab1-tab1-module")]).then(__webpack_require__.bind(null, /*! ../tab1/tab1.module */ "tmrb")).then(m => m.Tab1PageModule)
+                loadChildren: () => Promise.all(/*! import() | tab1-tab1-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~modals-resource-modal-resource-modal-module~tab1-tab1-module"), __webpack_require__.e("tab1-tab1-module")]).then(__webpack_require__.bind(null, /*! ../tab1/tab1.module */ "tmrb")).then(m => m.Tab1PageModule)
             },
             {
                 path: 'tab2',
-                loadChildren: () => Promise.all(/*! import() | tab2-tab2-module */[__webpack_require__.e("common"), __webpack_require__.e("tab2-tab2-module")]).then(__webpack_require__.bind(null, /*! ../tab2/tab2.module */ "TUkU")).then(m => m.Tab2PageModule)
+                loadChildren: () => __webpack_require__.e(/*! import() | tab2-tab2-module */ "tab2-tab2-module").then(__webpack_require__.bind(null, /*! ../tab2/tab2.module */ "TUkU")).then(m => m.Tab2PageModule)
             },
             {
                 path: 'tab3',
-                loadChildren: () => Promise.all(/*! import() | tab3-tab3-module */[__webpack_require__.e("common"), __webpack_require__.e("tab3-tab3-module")]).then(__webpack_require__.bind(null, /*! ../tab3/tab3.module */ "k+ul")).then(m => m.Tab3PageModule)
+                loadChildren: () => __webpack_require__.e(/*! import() | tab3-tab3-module */ "tab3-tab3-module").then(__webpack_require__.bind(null, /*! ../tab3/tab3.module */ "k+ul")).then(m => m.Tab3PageModule)
             },
             {
                 path: 'tab1/detail/:id',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
-            },
-            {
-                path: 'tab1/detail/:mountainId/route/:routeId',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-route-route-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/route/route.module */ "selH")).then(m => m.RoutePageModule)
+                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
             },
             {
                 path: 'tab2/tab1/detail/:id',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
-            },
-            {
-                path: 'tab2/tab1/detail/:mountainId/route/:routeId',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-route-route-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/route/route.module */ "selH")).then(m => m.RoutePageModule)
-            },
-            {
-                path: 'tab2/route/:routeId',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-route-route-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/route/route.module */ "selH")).then(m => m.RoutePageModule)
+                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
             },
             {
                 path: 'tab3/detail/:id',
-                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
+                loadChildren: () => Promise.all(/*! import() | tab1-detail-detail-module */[__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null, /*! ../tab1/detail/detail.module */ "9Y0V")).then(m => m.DetailPageModule)
             },
             {
                 path: '',

@@ -25,30 +25,17 @@ let Tab3Page = class Tab3Page {
         this.storage = storage;
         this.userHasMountainsInProgress = false;
         this.totalSummits = 0;
-        this.winterSummits = 0;
-        this.springSummits = 0;
-        this.summerSummits = 0;
-        this.fallSummits = 0;
     }
     ngOnInit() {
         this.getCompletedMountains();
     }
     ionViewWillEnter() {
-        this.springSummits = 0;
-        this.summerSummits = 0;
-        this.fallSummits = 0;
-        this.winterSummits = 0;
         this.getCompletedMountains();
     }
     getCompletedMountains() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.springSummits = 0;
-            this.summerSummits = 0;
-            this.fallSummits = 0;
-            this.winterSummits = 0;
             this.totalSummits = 0;
             this.completedMountains = yield this.storage.get('completedMountains');
-            console.log('completed: ', this.completedMountains);
             if (Array.isArray(this.completedMountains)) {
                 this.totalSummits = this.completedMountains.length;
                 this.completedMountains.sort((_a, _b) => {
@@ -61,27 +48,6 @@ let Tab3Page = class Tab3Page {
                 });
             }
         });
-    }
-    calculateSeason(dateCompleted) {
-        console.log('date completed: ', dateCompleted);
-        let dateToAnalyze = new Date(dateCompleted);
-        let month = dateToAnalyze.getMonth();
-        let date = dateToAnalyze.getDate();
-        console.log('date: ', dateToAnalyze);
-        console.log('datemonth: ', month);
-        // Take care of the easy months first that don't require looking at the date
-        if (month == 11 || month == 0 || month == 1) {
-            this.winterSummits++;
-        }
-        else if (month == 2 || month == 3 || month == 4) {
-            this.springSummits++;
-        }
-        else if (month == 5 || month == 6 || month == 7) {
-            this.summerSummits++;
-        }
-        else if (month == 8 || month == 9 || month == 10) {
-            this.fallSummits++;
-        }
     }
 };
 Tab3Page.ctorParameters = () => [
@@ -145,7 +111,7 @@ Tab3PageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Progress</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <h2>Total Summits: {{ totalSummits }}</h2>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <h3 *ngIf=\"totalSummits == 0\" class=\"ion-text-center\" style=\"padding: 18%;\">\n    You don't have any summits yet! <br><br>To save your summits click the <br><b>'Save to Progress'</b><br> button located at the bottom of a mountain's page.\n  </h3>\n  <ion-list style=\"padding: 0px;\">\n    <ion-virtual-scroll [items]=\"completedMountains\" approxItemHeight=\"75px\">\n      <ion-item \n        *virtualItem=\"let mountain\" \n        routerLink=\"detail/{{mountain.mountainId}}\"\n        lines=\"full\"\n        style=\"padding: 0px\" \n        class=\"ion-no-padding\"\n      >\n        <ion-thumbnail slot=\"start\" class=\"ion-no-margin\" style=\"size: 75px;\">\n          <img [src]=\"mountain.thumbnailUrl\">\n        </ion-thumbnail>\n        <!--\n        <ion-grid>\n          <ion-row>\n            <ion-col>\n              {{ mountain.name }}\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>\n              <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n              <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>\n              <div *ngIf=\"mountain.hasRouteClass\">\n                <span style=\"float: left\">\n                  <span *ngIf=\"mountain.hasRouteClass[0]\" style=\"background-color: #77d505;\" class=\"dot\"></span>\n                  <span *ngIf=\"!mountain.hasRouteClass[0]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                  <span *ngIf=\"mountain.hasRouteClass[1]\" style=\"background-color: #fdcd01;\" class=\"dot\"></span>\n                  <span *ngIf=\"!mountain.hasRouteClass[1]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                  <span *ngIf=\"mountain.hasRouteClass[2]\" style=\"background-color: #fda204;\" class=\"dot\"></span>\n                  <span *ngIf=\"!mountain.hasRouteClass[2]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                  <span *ngIf=\"mountain.hasRouteClass[3]\" style=\"background-color: #fd5d02;\" class=\"dot\"></span>\n                  <span *ngIf=\"!mountain.hasRouteClass[3]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                  <span *ngIf=\"mountain.hasRouteClass[4]\" style=\"background-color: #d53732;\" class=\"dot\"></span>\n                  <span *ngIf=\"!mountain.hasRouteClass[4]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                </span>\n              </div>\n            </ion-col>\n            <ion-col>\n              <span>\n                <ion-icon id=\"checkmarkIcon\" color=\"primary\" name=\"checkmark-circle\"></ion-icon>\n                <small id=\"dateText\">{{ mountain.dateCompleted | date }}</small>\n              </span>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      -->\n        \n        <ion-grid class=\"ion-no-padding\">\n          <ion-row style=\"padding-left: 10px;\">\n            <ion-col size=\"10\">\n              <div>\n                <b>{{mountain.name}}</b>\n              </div>\n              <div id=\"mountainDetails\">\n                <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n              </div>\n              <div>\n                <span>\n                  <span>\n                    <ion-icon id=\"checkmarkIcon\" color=\"primary\" name=\"checkmark-circle\"></ion-icon>\n                    <small id=\"dateText\">{{ mountain.dateCompleted | date }}</small>\n                  </span>\n                  \n                </span>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n\n  <!--\n  <ion-list>\n    <ion-item *ngFor=\"let mountain of completedMountains | keyvalue\" routerLink=\"detail/{{mountain.value.mountainId}}\">\n      <ion-buttons slot=\"start\">\n        <ion-icon slot=\"start\" name=\"checkmark-circle\" (click)=\"handleBookmark()\"></ion-icon>\n      </ion-buttons>\n      <ion-col>\n        <div>\n          <b>{{mountain.value.name}}</b>\n        </div>\n        <div id=\"mountainDetails\">\n          <small id=\"elevation\">{{ mountain.value.elevation | number }}'</small>\n          <small>&nbsp;&nbsp;| {{ mountain.value.range }}</small>\n        </div>\n        <div *ngIf=\"mountain.value.hasRouteClass\">\n          <span *ngIf=\"mountain.value.hasRouteClass[0]\" style=\"background-color: #77d505;\" class=\"dot\"></span>\n          <span *ngIf=\"!mountain.value.hasRouteClass[0]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n          <span *ngIf=\"mountain.value.hasRouteClass[1]\" style=\"background-color: #fdcd01;\" class=\"dot\"></span>\n          <span *ngIf=\"!mountain.value.hasRouteClass[1]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n          <span *ngIf=\"mountain.value.hasRouteClass[2]\" style=\"background-color: #fda204;\" class=\"dot\"></span>\n          <span *ngIf=\"!mountain.value.hasRouteClass[2]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n          <span *ngIf=\"mountain.value.hasRouteClass[3]\" style=\"background-color: #fd5d02;\" class=\"dot\"></span>\n          <span *ngIf=\"!mountain.value.hasRouteClass[3]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n          <span *ngIf=\"mountain.value.hasRouteClass[4]\" style=\"background-color: #d53732;\" class=\"dot\"></span>\n          <span *ngIf=\"!mountain.value.hasRouteClass[4]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n          <span style=\"padding-left: 5vh\">\n            <ion-icon color=\"primary\" id=\"checkmarkIcon\" name=\"checkmark-circle\"></ion-icon>\n            <small id=\"dateText\">{{ mountain.value.dateCompleted | date }}</small>\n          </span>\n        </div>\n      </ion-col>\n    </ion-item>\n  </ion-list>\n  -->\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Progress</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col class=\"ion-text-center\">\n        <h2>Total Summits: {{ totalSummits }}</h2>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <h3 *ngIf=\"totalSummits == 0\" class=\"ion-text-center\" style=\"padding: 18%;\">\n    You don't have any summits yet! <br><br>To save your summits click the <br><b>'Save to Progress'</b><br> button located at the bottom of a mountain's page.\n  </h3>\n  <ion-list style=\"padding: 0px;\">\n    <ion-virtual-scroll [items]=\"completedMountains\" approxItemHeight=\"75px\">\n      <ion-item \n        *virtualItem=\"let mountain\" \n        routerLink=\"detail/{{mountain.mountainId}}\"\n        lines=\"full\"\n        style=\"padding: 0px\" \n        class=\"ion-no-padding\"\n      >\n        <ion-thumbnail slot=\"start\" class=\"ion-no-margin\" style=\"size: 75px;\">\n          <img [src]=\"mountain.thumbnailUrl\">\n        </ion-thumbnail>        \n        <ion-grid class=\"ion-no-padding\">\n          <ion-row style=\"padding-left: 10px;\">\n            <ion-col size=\"10\">\n              <div>\n                <b>{{mountain.name}}</b>\n              </div>\n              <div id=\"mountainDetails\">\n                <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n              </div>\n              <div>\n                <span>\n                  <span>\n                    <ion-icon id=\"checkmarkIcon\" color=\"primary\" name=\"checkmark-circle\"></ion-icon>\n                    <small id=\"dateText\">{{ mountain.dateCompleted | date }}</small>\n                  </span>\n                </span>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n</ion-content>\n");
 
 /***/ }),
 
@@ -166,9 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _tab3_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab3.page */ "IqiF");
-/* harmony import */ var _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../explore-container/explore-container.module */ "qtYk");
-/* harmony import */ var _tab3_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tab3-routing.module */ "OcaV");
-
+/* harmony import */ var _tab3_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tab3-routing.module */ "OcaV");
 
 
 
@@ -185,9 +149,8 @@ Tab3PageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
-            _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__["ExploreContainerComponentModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild([{ path: '', component: _tab3_page__WEBPACK_IMPORTED_MODULE_6__["Tab3Page"] }]),
-            _tab3_routing_module__WEBPACK_IMPORTED_MODULE_8__["Tab3PageRoutingModule"],
+            _tab3_routing_module__WEBPACK_IMPORTED_MODULE_7__["Tab3PageRoutingModule"],
         ],
         declarations: [_tab3_page__WEBPACK_IMPORTED_MODULE_6__["Tab3Page"]]
     })

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">Mountain</ion-title>
+    <ion-title class="ion-text-center">{{ (mountain | async)?.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
     </ion-buttons>
@@ -14,6 +14,9 @@
   <ion-grid class="ion-no-padding">
   </ion-grid>
   <ion-grid>
+    <ion-row>
+      <img id="mountainImg" [src]="(mountain | async)?.thumbnailUrl">
+    </ion-row>
     <ion-row class="ion-text-center">
       <ion-col>
         <h2>{{ (mountain | async)?.name }}</h2>
@@ -24,14 +27,16 @@
         <p><b>Elevation:</b></p>
         <p><b>Prominence:</b></p>
         <p><b>Range:</b></p>
-        <p *ngIf="(mountain | async)?.is14er"><b>14er Rank:</b></p>
+        <p *ngIf="(mountain | async)?.usFourteenerRank"><b>USA 14er Rank:</b></p>
+        <p *ngIf="(mountain | async)?.fourteener"><b>CO 14er Rank:</b></p>
         <p style="padding-top: 0px;"><b>Location:</b></p>
       </ion-col>
       <ion-col>
         <p>{{ (mountain | async)?.elevation | number }}'</p>
         <p>{{ (mountain | async)?.prominence | number }}'</p>
         <p>{{ (mountain | async)?.range }}</p>
-        <p *ngIf="(mountain | async)?.is14er">{{ (mountain|async)?.fourteenerRank }} of 53</p>
+        <p *ngIf="(mountain | async)?.usFourteenerRank">{{ (mountain|async)?.usFourteenerRank }} of 98</p>
+        <p *ngIf="(mountain | async)?.fourteener">{{ (mountain|async)?.fourteenerRank }} of 53</p>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -49,8 +54,10 @@
         <ion-row>
           <ion-col size="7">
             <ion-row style="padding-bottom: 2px;"><b>{{ route.name }}</b></ion-row>
-            <ion-row style="padding-top: 2px;"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>
-            <ion-row style="padding-top: 2px"><small>Gain: {{ route.gain | number}}'</small></ion-row>
+            <ion-row *ngIf="route.mileage" style="padding-top: 2px;"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>
+            <ion-row *ngIf="!route.mileage" style="padding-top: 2px;"><small>Roundtrip: ? mi</small></ion-row>
+            <ion-row *ngIf="route.gain" style="padding-top: 2px"><small>Gain: {{ route.gain | number}}'</small></ion-row>
+            <ion-row *ngIf="!route.gain" style="padding-top: 2px"><small>Gain: ?'</small></ion-row>
           </ion-col>
           <ion-col class="ion-text-left">
             <ion-row style="padding-bottom: 2px;">
@@ -61,6 +68,7 @@
               <span style="background-color: #d53732;" class="classDisplay" *ngIf="route.class == 5"><small>Class 5</small></span>
             </ion-row>
             <ion-row style="padding-top: 2px;">
+              <span *ngIf="!route.trailheadAccess" style="background-color: gray; padding-left: 1em; padding-right: 1em;" class="classDisplay"><small>?</small></span>
               <span *ngIf="route.trailheadAccess == 1" style="background-color: #77d505;" class="classDisplay"><small>Paved Road</small></span>
               <span *ngIf="route.trailheadAccess == 2" style="background-color: #fdcd01;" class="classDisplay"><small>Easy 2WD Dirt</small></span>
               <span *ngIf="route.trailheadAccess == 3" style="background-color: #fda204;" class="classDisplay"><small>Rough 2WD Dirt</small></span>
@@ -77,7 +85,7 @@
     <ion-item *ngFor="let resource of (mountain | async)?.resources">
       <a href="{{resource.url}}">{{resource.name}}</a>
     </ion-item>
-    <ion-list-header>
+    <ion-list-header *ngIf="(mountain | async)?.guidebooks">
       <ion-label>Guidebooks</ion-label>
     </ion-list-header>
     <ion-item *ngFor="let guidebook of (mountain | async)?.guidebooks">

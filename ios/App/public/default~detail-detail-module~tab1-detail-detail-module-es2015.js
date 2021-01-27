@@ -22,10 +22,6 @@ const routes = [
     {
         path: '',
         component: _detail_page__WEBPACK_IMPORTED_MODULE_3__["DetailPage"]
-    },
-    {
-        path: 'route',
-        loadChildren: () => __webpack_require__.e(/*! import() | route-route-module */ "default~route-route-module~tab1-detail-route-route-module").then(__webpack_require__.bind(null, /*! ./route/route.module */ "selH")).then(m => m.RoutePageModule)
     }
 ];
 let DetailPageRoutingModule = class DetailPageRoutingModule {
@@ -170,7 +166,6 @@ let DetailPage = class DetailPage {
                     return false;
                 }
                 else {
-                    console.log('spot A: ', favoriteMountains);
                     for (let favorite of favoriteMountains) {
                         if (favorite.mountainId == id) {
                             this.isFavorite = true;
@@ -193,7 +188,6 @@ let DetailPage = class DetailPage {
             let completedMountains = [];
             try {
                 completedMountains = yield this.storage.get('completedMountains');
-                console.log('completed: ', completedMountains);
                 // No favorites, return false
                 if (completedMountains == null) {
                     this.isCompleted = false;
@@ -229,9 +223,7 @@ let DetailPage = class DetailPage {
                     return false;
                 }
                 else {
-                    console.log('spot A: ', favoriteMountains);
                     if (favoriteMountains[id] != undefined) {
-                        console.log('favorite mountain found!');
                         this.isFavorite = true;
                         return true;
                     }
@@ -251,79 +243,31 @@ let DetailPage = class DetailPage {
         this.mountainDoc = this.afs.doc('mountains/' + id);
         this.mountain = this.mountainDoc.valueChanges();
         this.mountain.subscribe(data => {
-            console.log('data: ', data);
             this.mountainName = data.name;
             this.mountainElevation = data.elevation;
             this.resources = data.resources;
             this.hasRouteClass = data.hasRouteClass;
             this.range = data.range;
             this.thumbnailUrl = data.thumbnailUrl;
-            if (this.thumbnailUrl) {
-                //this.getImage(this.thumbnailUrl);
-            }
         });
         this.routeList = this.afs.doc('mountains/' + id).collection('routes').valueChanges();
         this.resources = this.afs.doc('mountains/' + id).collection('resources').valueChanges();
         this.guidebooks = this.afs.doc('mountains/' + id).collection('guidebooks').valueChanges();
-        //this.climbService.getMountain(id).subscribe(mountain => this.mountain = mountain);
     }
     handleBookmark() {
         if (this.isFavorite) {
-            console.log('handle bookmrk, delete');
-            //this.deleteFavorite();
             this.deleteFavoriteMountain();
         }
         else {
-            //this.addFavorite();
             this.addFavoriteMountain();
         }
     }
-    addFavorite() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            let favoriteMountains = {};
-            const id = this.route.snapshot.paramMap.get('id');
-            console.log('addFavorite called and name: ', this.mountainName);
-            /*let mountainInfo = await this.afs.collection('mountains').doc(id).get().pipe()
-            if(!mountainInfo) {
-              console.log('no mountain info');
-            } else {
-              console.log('mountain info: ', mountainInfo.data());
-            }
-        
-            console.log('mountain info: ', mountainInfo);
-        */
-            try {
-                favoriteMountains = yield this.storage.get('favoriteMountains');
-                // Check if no favorites
-                if (favoriteMountains == null) {
-                    favoriteMountains = {};
-                }
-                let mountainInfo = {
-                    name: this.mountainName,
-                    elevation: this.mountainElevation
-                };
-                //Add
-                favoriteMountains[id] = mountainInfo;
-                let newFavoriteMountains = yield this.storage.set('favoriteMountains', favoriteMountains);
-                alert('Added to Favorites!');
-                console.log('new favs: ', newFavoriteMountains);
-                this.checkIfFavorite();
-                return true;
-            }
-            catch (reason) {
-                console.log(reason);
-                return false;
-            }
-        });
-    }
     addFavoriteMountain() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log('add fav mtn called');
             let favoriteMountains = [];
             const id = this.route.snapshot.paramMap.get('id');
             try {
                 favoriteMountains = yield this.storage.get('favoriteMountains');
-                console.log('fav mtns: ', favoriteMountains);
                 if (favoriteMountains == null) {
                     favoriteMountains = [];
                 }
@@ -337,7 +281,6 @@ let DetailPage = class DetailPage {
                 };
                 favoriteMountains.push(mountainDetails);
                 let newFavorites = yield this.storage.set('favoriteMountains', favoriteMountains);
-                console.log('new favorites: ', newFavorites);
             }
             catch (error) {
                 console.log('Error in addFavoriteMountain.', error);
@@ -358,31 +301,11 @@ let DetailPage = class DetailPage {
                     return favorite.mountainId != id;
                 });
                 let results = yield this.storage.set('favoriteMountains', newFavorites);
-                console.log('results: ', results);
             }
             catch (error) {
                 console.log('Error in deleteFavoriteMountain(). ', error);
             }
             this.checkIfMountainIsFavorite();
-        });
-    }
-    // Replaces the favorite list with a new favorite list after removing the current mountain ID
-    // Will only be called if the isFavorite == true
-    // Assumes favorite list exists if called
-    deleteFavorite() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            let favoriteMountains = [];
-            const id = this.route.snapshot.paramMap.get('id');
-            try {
-                favoriteMountains = yield this.storage.get('favoriteMountains');
-                delete favoriteMountains[id];
-                let newResults = yield this.storage.set('favoriteMountains', favoriteMountains);
-                alert('Removed from Favorites.');
-                this.checkIfFavorite();
-            }
-            catch (reason) {
-                console.log('Error in deleteFavorite.', reason);
-            }
         });
     }
     saveMountainToProgress(completedDate) {
@@ -391,7 +314,6 @@ let DetailPage = class DetailPage {
             const id = this.route.snapshot.paramMap.get('id');
             try {
                 completedMountains = yield this.storage.get('completedMountains');
-                console.log('fav mtns: ', completedMountains);
                 if (completedMountains == null) {
                     completedMountains = [];
                 }
@@ -404,7 +326,6 @@ let DetailPage = class DetailPage {
                     dateCompleted: completedDate,
                     thumbnailUrl: this.thumbnailUrl
                 };
-                console.log('mountain details to save: ', mountainDetails);
                 completedMountains.push(mountainDetails);
                 let newFavorites = yield this.storage.set('completedMountains', completedMountains);
             }
@@ -427,7 +348,6 @@ let DetailPage = class DetailPage {
                     return mountain.mountainId != id;
                 });
                 let results = yield this.storage.set('completedMountains', newCompletedMountains);
-                console.log('results: ', results);
             }
             catch (error) {
                 console.log('Error in deleteFavoriteMountain(). ', error);
@@ -523,7 +443,7 @@ DetailPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Mountain</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/tabs/tab1\"></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-icon *ngIf=\"!isFavorite\" slot=\"end\" name=\"bookmark-outline\" (click)=\"handleBookmark()\"></ion-icon>\n      <ion-icon *ngIf=\"isFavorite\" slot=\"end\" name=\"bookmark\" (click)=\"handleBookmark()\"></ion-icon>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-grid class=\"ion-no-padding\">\n  </ion-grid>\n  <ion-grid>\n    <ion-row class=\"ion-text-center\">\n      <ion-col>\n        <h2>{{ (mountain | async)?.name }}</h2>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p><b>Elevation:</b></p>\n        <p><b>Prominence:</b></p>\n        <p><b>Range:</b></p>\n        <p *ngIf=\"(mountain | async)?.is14er\"><b>14er Rank:</b></p>\n        <p style=\"padding-top: 0px;\"><b>Location:</b></p>\n      </ion-col>\n      <ion-col>\n        <p>{{ (mountain | async)?.elevation | number }}'</p>\n        <p>{{ (mountain | async)?.prominence | number }}'</p>\n        <p>{{ (mountain | async)?.range }}</p>\n        <p *ngIf=\"(mountain | async)?.is14er\">{{ (mountain|async)?.fourteenerRank }} of 53</p>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p>{{ (mountain | async)?.location }}</p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list>\n    <ion-list-header>\n      <ion-label>Routes</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let route of (mountain | async)?.routes\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"7\">\n            <ion-row style=\"padding-bottom: 2px;\"><b>{{ route.name }}</b></ion-row>\n            <ion-row style=\"padding-top: 2px;\"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>\n            <ion-row style=\"padding-top: 2px\"><small>Gain: {{ route.gain | number}}'</small></ion-row>\n          </ion-col>\n          <ion-col class=\"ion-text-left\">\n            <ion-row style=\"padding-bottom: 2px;\">\n              <span style=\"background-color: #77d505;\" class=\"classDisplay\" *ngIf=\"route.class == 1\"><small>Class 1</small></span>\n              <span style=\"background-color: #fdcd01;\" class=\"classDisplay\" *ngIf=\"route.class == 2\"><small>Class 2</small></span>\n              <span style=\"background-color: #fda204;\" class=\"classDisplay\" *ngIf=\"route.class == 3\"><small>Class 3</small></span>\n              <span style=\"background-color: #fd5d02\" class=\"classDisplay\" *ngIf=\"route.class == 4\"><small>Class 4</small></span>\n              <span style=\"background-color: #d53732;\" class=\"classDisplay\" *ngIf=\"route.class == 5\"><small>Class 5</small></span>\n            </ion-row>\n            <ion-row style=\"padding-top: 2px;\">\n              <span *ngIf=\"route.trailheadAccess == 1\" style=\"background-color: #77d505;\" class=\"classDisplay\"><small>Paved Road</small></span>\n              <span *ngIf=\"route.trailheadAccess == 2\" style=\"background-color: #fdcd01;\" class=\"classDisplay\"><small>Easy 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 3\" style=\"background-color: #fda204;\" class=\"classDisplay\"><small>Rough 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 4\" style=\"background-color: #fd5d02;\" class=\"classDisplay\"><small>4WD Only</small></span>\n              <span *ngIf=\"route.trailheadAccess == 5\" style=\"background-color: #d53732;\" class=\"classDisplay\"><small>Rough 4WD</small></span>\n            </ion-row>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Resources</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let resource of (mountain | async)?.resources\">\n      <a href=\"{{resource.url}}\">{{resource.name}}</a>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Guidebooks</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let guidebook of (mountain | async)?.guidebooks\">\n      <a href=\"{{ guidebook.url}}\">{{guidebook.name}}</a>\n    </ion-item>\n  </ion-list>  \n  <ion-button *ngIf=\"!isCompleted\" expand=\"block\" color=\"secondary\" (click)=\"presentSaveProgressAlert()\">\n    Save to Progress\n  </ion-button>\n  <ion-button *ngIf=\"isCompleted\" expand=\"block\" color=\"primary\" (click)=\"presentRemoveProgressAlert()\">\n    Completed\n  </ion-button>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title class=\"ion-text-center\">Mountain</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/tabs/tab1\"></ion-back-button>\n    </ion-buttons>\n    <ion-buttons slot=\"end\">\n      <ion-icon *ngIf=\"!isFavorite\" slot=\"end\" name=\"bookmark-outline\" (click)=\"handleBookmark()\"></ion-icon>\n      <ion-icon *ngIf=\"isFavorite\" slot=\"end\" name=\"bookmark\" (click)=\"handleBookmark()\"></ion-icon>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <ion-grid class=\"ion-no-padding\">\n  </ion-grid>\n  <ion-grid>\n    <ion-row class=\"ion-text-center\">\n      <ion-col>\n        <h2>{{ (mountain | async)?.name }}</h2>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p><b>Elevation:</b></p>\n        <p><b>Prominence:</b></p>\n        <p><b>Range:</b></p>\n        <p *ngIf=\"(mountain | async)?.is14er\"><b>14er Rank:</b></p>\n        <p style=\"padding-top: 0px;\"><b>Location:</b></p>\n      </ion-col>\n      <ion-col>\n        <p>{{ (mountain | async)?.elevation | number }}'</p>\n        <p>{{ (mountain | async)?.prominence | number }}'</p>\n        <p>{{ (mountain | async)?.range }}</p>\n        <p *ngIf=\"(mountain | async)?.is14er\">{{ (mountain|async)?.fourteenerRank }} of 53</p>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <p>{{ (mountain | async)?.location }}</p>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-list>\n    <ion-list-header>\n      <ion-label>Routes</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let route of (mountain | async)?.routes\">\n      <ion-grid>\n        <ion-row>\n          <ion-col size=\"7\">\n            <ion-row style=\"padding-bottom: 2px;\"><b>{{ route.name }}</b></ion-row>\n            <ion-row style=\"padding-top: 2px;\"><small>Roundtrip: {{ route.mileage | number}} mi</small></ion-row>\n            <ion-row style=\"padding-top: 2px\"><small>Gain: {{ route.gain | number}}'</small></ion-row>\n          </ion-col>\n          <ion-col class=\"ion-text-left\">\n            <ion-row style=\"padding-bottom: 2px;\">\n              <span style=\"background-color: #77d505;\" class=\"classDisplay\" *ngIf=\"route.class == 1\"><small>Class 1</small></span>\n              <span style=\"background-color: #fdcd01;\" class=\"classDisplay\" *ngIf=\"route.class == 2\"><small>Class 2</small></span>\n              <span style=\"background-color: #fda204;\" class=\"classDisplay\" *ngIf=\"route.class == 3\"><small>Class 3</small></span>\n              <span style=\"background-color: #fd5d02\" class=\"classDisplay\" *ngIf=\"route.class == 4\"><small>Class 4</small></span>\n              <span style=\"background-color: #d53732;\" class=\"classDisplay\" *ngIf=\"route.class == 5\"><small>Class 5</small></span>\n            </ion-row>\n            <ion-row style=\"padding-top: 2px;\">\n              <span *ngIf=\"route.trailheadAccess == 1\" style=\"background-color: #77d505;\" class=\"classDisplay\"><small>Paved Road</small></span>\n              <span *ngIf=\"route.trailheadAccess == 2\" style=\"background-color: #fdcd01;\" class=\"classDisplay\"><small>Easy 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 3\" style=\"background-color: #fda204;\" class=\"classDisplay\"><small>Rough 2WD Dirt</small></span>\n              <span *ngIf=\"route.trailheadAccess == 4\" style=\"background-color: #fd5d02;\" class=\"classDisplay\"><small>4WD Only</small></span>\n              <span *ngIf=\"route.trailheadAccess == 5\" style=\"background-color: #d53732;\" class=\"classDisplay\"><small>Rough 4WD</small></span>\n            </ion-row>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Resources</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let resource of (mountain | async)?.resources\">\n      <a *ngIf=\"resource.url != ''\" href=\"{{resource.url}}\">{{resource.name}}</a>\n    </ion-item>\n    <ion-list-header>\n      <ion-label>Guidebooks</ion-label>\n    </ion-list-header>\n    <ion-item *ngFor=\"let guidebook of (mountain | async)?.guidebooks\">\n      <a href=\"{{ guidebook.url}}\">{{guidebook.name}}</a>\n    </ion-item>\n  </ion-list>  \n  <ion-button *ngIf=\"!isCompleted\" expand=\"block\" color=\"secondary\" (click)=\"presentSaveProgressAlert()\">\n    Save to Progress\n  </ion-button>\n  <ion-button *ngIf=\"isCompleted\" expand=\"block\" color=\"primary\" (click)=\"presentRemoveProgressAlert()\">\n    Completed\n  </ion-button>\n</ion-content>");
 
 /***/ })
 

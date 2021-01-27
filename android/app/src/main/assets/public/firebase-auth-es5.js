@@ -1,7 +1,31 @@
 (function () {
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["firebase-auth"], {
     /***/
-    "./node_modules/@firebase/auth/dist/auth.esm.js":
+    "6nsN":
+    /*!******************************************************!*\
+      !*** ./node_modules/firebase/auth/dist/index.esm.js ***!
+      \******************************************************/
+
+    /*! no exports provided */
+
+    /***/
+    function nsN(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony import */
+
+
+      var _firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @firebase/auth */
+      "t6oF"); //# sourceMappingURL=index.esm.js.map
+
+      /***/
+
+    },
+
+    /***/
+    "t6oF":
     /*!******************************************************!*\
       !*** ./node_modules/@firebase/auth/dist/auth.esm.js ***!
       \******************************************************/
@@ -9,7 +33,7 @@
     /*! no exports provided */
 
     /***/
-    function node_modulesFirebaseAuthDistAuthEsmJs(module, __webpack_exports__, __webpack_require__) {
+    function t6oF(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -18,7 +42,7 @@
 
       var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! @firebase/app */
-      "./node_modules/@firebase/app/dist/index.esm.js");
+      "zIRd");
 
       (function () {
         /*
@@ -10826,30 +10850,6 @@
       }).apply(typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {}); //# sourceMappingURL=auth.esm.js.map
 
       /***/
-    },
-
-    /***/
-    "./node_modules/firebase/auth/dist/index.esm.js":
-    /*!******************************************************!*\
-      !*** ./node_modules/firebase/auth/dist/index.esm.js ***!
-      \******************************************************/
-
-    /*! no exports provided */
-
-    /***/
-    function node_modulesFirebaseAuthDistIndexEsmJs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony import */
-
-
-      var _firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! @firebase/auth */
-      "./node_modules/@firebase/auth/dist/auth.esm.js"); //# sourceMappingURL=index.esm.js.map
-
-      /***/
-
     }
   }]);
 })();

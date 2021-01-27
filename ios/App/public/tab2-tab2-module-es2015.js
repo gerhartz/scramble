@@ -40,12 +40,10 @@ let Tab2Page = class Tab2Page {
     }
     ngOnInit() {
         this.getFavoriteMountains();
-        this.getFavoriteRoutes();
     }
     ionViewWillEnter() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.getFavoriteMountains();
-            //this.favoriteMountains = await this.storage.get('favoriteMountains');
             this.favoriteRoutes = yield this.storage.get('favoriteRoutes');
         });
     }
@@ -59,23 +57,19 @@ let Tab2Page = class Tab2Page {
                 else {
                     this.noFavoriteRoutes = true;
                 }
+                this.favoriteMountains.sort((a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    else {
+                        return -1;
+                    }
+                });
             }
             else {
                 this.noFavoriteRoutes = true;
             }
-            /*if(Array.isArray(this.favorites)) {
-              this.favorites.sort(this.compareFunction);
-            };
-            */
         });
-    }
-    getFavoriteRoutes() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.favoriteRoutes = yield this.storage.get('favoriteRoutes');
-        });
-    }
-    compareFunction(a, b) {
-        return true;
     }
 };
 Tab2Page.ctorParameters = () => [
@@ -109,9 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
 /* harmony import */ var _tab2_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tab2.page */ "JZ9U");
-/* harmony import */ var _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../explore-container/explore-container.module */ "qtYk");
-/* harmony import */ var _tab2_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tab2-routing.module */ "UDmF");
-
+/* harmony import */ var _tab2_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab2-routing.module */ "UDmF");
 
 
 
@@ -127,8 +119,7 @@ Tab2PageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"],
             _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-            _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_6__["ExploreContainerComponentModule"],
-            _tab2_routing_module__WEBPACK_IMPORTED_MODULE_7__["Tab2PageRoutingModule"]
+            _tab2_routing_module__WEBPACK_IMPORTED_MODULE_6__["Tab2PageRoutingModule"]
         ],
         declarations: [_tab2_page__WEBPACK_IMPORTED_MODULE_5__["Tab2Page"]]
     })
@@ -184,7 +175,7 @@ Tab2PageRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title size=\"medium\" class=\"ion-text-center\">Favorites</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <!--\n  <ion-list>\n    <ion-virtual-scroll [items]=\"favoriteMountains\" approxItemHeight=\"75px\">\n      <ion-item *virtualItem=\"let mountain\">\n        {{ mountain.name }}\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n-->\n  <h3 *ngIf=\"noFavoriteRoutes\" class=\"ion-text-center\" style=\"padding: 20px;\">\n    You don't have any favorites. View a mountain and then click the bookmark icon to add a favorite.\n  </h3>\n  <ion-list>\n    <ion-virtual-scroll [items]=\"favoriteMountains\" approxItemHeight=\"75px\">\n      <ion-item \n        *virtualItem=\"let mountain\" \n        routerLink=\"tab1/detail/{{mountain.mountainId}}\" \n        lines=\"full\"\n        style=\"padding: 0px\" \n        class=\"ion-no-padding\"\n      >\n        <ion-thumbnail slot=\"start\" class=\"ion-no-margin\" style=\"size: 75px;\">\n          <img [src]=\"mountain.thumbnailUrl\">\n        </ion-thumbnail>\n        <ion-grid>\n          <ion-row style=\"padding-left: 10px;\">\n            <ion-col size=\"10\">\n              <div>\n                <b>{{mountain.name}}</b>\n              </div>\n              <div id=\"mountainDetails\">\n                <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n              </div>\n              <div *ngIf=\"mountain.hasRouteClass\">\n                <span *ngIf=\"mountain.hasRouteClass[0]\" style=\"background-color: #77d505;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[0]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[1]\" style=\"background-color: #fdcd01;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[1]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[2]\" style=\"background-color: #fda204;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[2]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[3]\" style=\"background-color: #fd5d02;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[3]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[4]\" style=\"background-color: #d53732;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[4]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n  \n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title size=\"medium\" class=\"ion-text-center\">Favorites</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <h3 *ngIf=\"noFavoriteRoutes\" class=\"ion-text-center\" style=\"padding: 20px;\">\n    You don't have any favorites. View a mountain and then click the bookmark icon to add a favorite.\n  </h3>\n  <ion-list>\n    <ion-virtual-scroll [items]=\"favoriteMountains\" approxItemHeight=\"75px\">\n      <ion-item \n        *virtualItem=\"let mountain\" \n        routerLink=\"tab1/detail/{{mountain.mountainId}}\" \n        lines=\"full\"\n        style=\"padding: 0px\" \n        class=\"ion-no-padding\"\n      >\n        <ion-thumbnail slot=\"start\" class=\"ion-no-margin\" style=\"size: 75px;\">\n          <img [src]=\"mountain.thumbnailUrl\">\n        </ion-thumbnail>\n        <ion-grid>\n          <ion-row style=\"padding-left: 10px;\">\n            <ion-col size=\"10\">\n              <div>\n                <b>{{mountain.name}}</b>\n              </div>\n              <div id=\"mountainDetails\">\n                <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n              </div>\n              <div *ngIf=\"mountain.hasRouteClass\">\n                <span *ngIf=\"mountain.hasRouteClass[0]\" style=\"background-color: #77d505;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[0]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[1]\" style=\"background-color: #fdcd01;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[1]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[2]\" style=\"background-color: #fda204;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[2]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[3]\" style=\"background-color: #fd5d02;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[3]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[4]\" style=\"background-color: #d53732;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[4]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n</ion-content>\n");
 
 /***/ })
 

@@ -72,7 +72,7 @@
             this.modalTitle = this.navParams.data.paramTitle;
             this.selectedClasses = this.navParams.data.selectedClasses;
             this.selectedTHAccess = this.navParams.data.selectedTHAccess;
-            console.log('inside resource modal. selected classes: ', this.selectedClasses);
+            this.selectedStates = this.navParams.data.selectedStates;
           }
         }, {
           key: "closeModal",
@@ -86,7 +86,8 @@
                       dataToReturn = {
                         onClosedData: 'Wrapped up!',
                         selectedClasses: this.selectedClasses,
-                        selectedTHAccess: this.selectedTHAccess
+                        selectedTHAccess: this.selectedTHAccess,
+                        selectedStates: this.selectedStates
                       };
                       _context.next = 3;
                       return this.modalController.dismiss(dataToReturn);
@@ -201,6 +202,57 @@
 
             this.selectedTHAccess[trailheadNum] = !this.selectedTHAccess[trailheadNum];
           }
+        }, {
+          key: "selectState",
+          value: function selectState(stateNum) {
+            console.log('state num: ', stateNum);
+            console.log('states array: ', this.selectedStates); //Do not allow 'All' to be deselected if no other options are selected
+
+            if (stateNum == 0 && this.selectedStates.indexOf(true, 1) == -1) {
+              return;
+            } // Get the new value that will be inserted into trailhead access array if allowed to proceed
+
+
+            var newStateVal = !this.selectedStates[stateNum]; // Going from only 'All' to a single state
+
+            if (stateNum != 0 && this.selectedStates.indexOf(true, 1) == -1 && newStateVal) {
+              this.selectedStates[stateNum] = newStateVal;
+              this.selectedStates[0] = false;
+              return;
+            } // Select 'All' after other states were individually selected
+
+
+            if (stateNum == 0 && this.selectedStates[0] == false) {
+              console.log('here');
+              this.selectedStates[0] = true;
+              this.selectedStates.fill(false, 1);
+              return;
+            } // Deselecting last state should turn on 'All'
+
+
+            if (stateNum != 0 && this.statesArrayWillBecomeEmpty(stateNum) && !newStateVal) {
+              this.selectedStates[stateNum] = !this.selectedStates[stateNum];
+              this.selectedStates[0] = true;
+              return;
+            }
+
+            this.selectedStates[stateNum] = !this.selectedStates[stateNum];
+          }
+        }, {
+          key: "statesArrayWillBecomeEmpty",
+          value: function statesArrayWillBecomeEmpty(stateNum) {
+            var willBecomeEmpty = true;
+
+            for (var i = 1; i < this.selectedStates.length; i++) {
+              //Look for case where selectedState is true and is not about to be changed (stateNum)
+              if (i != stateNum && this.selectedStates[i] == true) {
+                willBecomeEmpty = false;
+                break;
+              }
+            }
+
+            return willBecomeEmpty;
+          }
         }]);
 
         return ResourceModalPage;
@@ -238,7 +290,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<!-- my-modal.page.html -->\n<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title>Sort / Filter</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"closeModal()\">Save</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-list-header>Route Class</ion-list-header>\n  <p>\n    <ion-chip [color]=\"selectedClasses[5] == true ? 'primary' : ''\" (click)=\"selectChip(5)\">\n      <ion-label>All Classes</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[5] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[0] == true ? 'primary' : ''\" (click)=\"selectChip(0)\">\n      <ion-label>Class 1</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[0] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[1] == true ? 'primary' : ''\" (click)=\"selectChip(1)\">\n      <ion-label>Class 2</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[1] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[2] == true ? 'primary' : ''\" (click)=\"selectChip(2)\">\n      <ion-label>Class 3</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[2] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[3] == true ? 'primary' : ''\" (click)=\"selectChip(3)\">\n      <ion-label>Class 4</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[3] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[4] == true ? 'primary' : ''\" (click)=\"selectChip(4)\">\n      <ion-label>Class 5</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[4] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n  </p>\n  <ion-list-header>Trailhead Access</ion-list-header>\n  <p>\n    <ion-chip [color]=\"selectedTHAccess[5] == true ? 'primary' : ''\" (click)=\"selectTrailhead(5)\">\n      <ion-label>All Trailheads</ion-label>\n      <ion-icon name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[0] == true ? 'primary' : ''\" (click)=\"selectTrailhead(0)\">\n      <ion-label>Paved Road</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[0] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[1] == true ? 'primary' : ''\" (click)=\"selectTrailhead(1)\">\n      <ion-label>Easy 2WD Dirt</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[1] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[2] == true ? 'primary' : ''\" (click)=\"selectTrailhead(2)\">\n      <ion-label>Rough 2WD Dirt</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[2] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[3] == true ? 'primary' : ''\" (click)=\"selectTrailhead(3)\">\n      <ion-label>Easy 4WD</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[3] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[4] == true ? 'primary' : ''\" (click)=\"selectTrailhead(4)\">\n      <ion-label>Rough 4WD</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[4] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n  </p>\n</ion-content>";
+      __webpack_exports__["default"] = "<!-- my-modal.page.html -->\n<ion-header>\n  <ion-toolbar color=\"primary\">\n    <ion-title>Sort / Filter</ion-title>\n    <ion-buttons slot=\"end\">\n      <ion-button (click)=\"closeModal()\">Save</ion-button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\">\n  <ion-list-header>Route Class</ion-list-header>\n  <p>\n    <ion-chip [color]=\"selectedClasses[5] == true ? 'primary' : ''\" (click)=\"selectChip(5)\">\n      <ion-label>All Classes</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[5] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[0] == true ? 'primary' : ''\" (click)=\"selectChip(0)\">\n      <ion-label>Class 1</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[0] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[1] == true ? 'primary' : ''\" (click)=\"selectChip(1)\">\n      <ion-label>Class 2</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[1] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[2] == true ? 'primary' : ''\" (click)=\"selectChip(2)\">\n      <ion-label>Class 3</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[2] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[3] == true ? 'primary' : ''\" (click)=\"selectChip(3)\">\n      <ion-label>Class 4</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[3] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedClasses[4] == true ? 'primary' : ''\" (click)=\"selectChip(4)\">\n      <ion-label>Class 5</ion-label>\n      <ion-icon *ngIf=\"selectedClasses[4] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n  </p>\n  <ion-list-header>Trailhead Access</ion-list-header>\n  <p>\n    <ion-chip [color]=\"selectedTHAccess[5] == true ? 'primary' : ''\" (click)=\"selectTrailhead(5)\">\n      <ion-label>All Trailheads</ion-label>\n      <ion-icon name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[0] == true ? 'primary' : ''\" (click)=\"selectTrailhead(0)\">\n      <ion-label>Paved Road</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[0] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[1] == true ? 'primary' : ''\" (click)=\"selectTrailhead(1)\">\n      <ion-label>Easy 2WD Dirt</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[1] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[2] == true ? 'primary' : ''\" (click)=\"selectTrailhead(2)\">\n      <ion-label>Rough 2WD Dirt</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[2] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[3] == true ? 'primary' : ''\" (click)=\"selectTrailhead(3)\">\n      <ion-label>Easy 4WD</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[3] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedTHAccess[4] == true ? 'primary' : ''\" (click)=\"selectTrailhead(4)\">\n      <ion-label>Rough 4WD</ion-label>\n      <ion-icon *ngIf=\"selectedTHAccess[4] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n  </p>\n  <ion-list-header>States</ion-list-header>\n  <p>\n    <ion-chip [color]=\"selectedStates[0] == true ? 'primary' : ''\" (click)=\"selectState(0)\">\n      <ion-label>All States</ion-label>\n      <ion-icon name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedStates[1] == true ? 'primary' : ''\" (click)=\"selectState(1)\">\n      <ion-label>Alaska</ion-label>\n      <ion-icon *ngIf=\"selectedStates[1] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedStates[2] == true ? 'primary' : ''\" (click)=\"selectState(2)\">\n      <ion-label>California</ion-label>\n      <ion-icon *ngIf=\"selectedStates[2] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedStates[3] == true ? 'primary' : ''\" (click)=\"selectState(3)\">\n      <ion-label>Colorado</ion-label>\n      <ion-icon *ngIf=\"selectedStates[3] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n    <ion-chip [color]=\"selectedStates[4] == true ? 'primary' : ''\" (click)=\"selectState(4)\">\n      <ion-label>Washington</ion-label>\n      <ion-icon *ngIf=\"selectedStates[4] == true\" name=\"close-circle\"></ion-icon>\n    </ion-chip>\n  </p>\n</ion-content>";
       /***/
     },
 

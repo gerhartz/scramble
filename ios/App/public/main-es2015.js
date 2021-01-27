@@ -453,10 +453,6 @@ const routes = [
     {
         path: 'resource-modal',
         loadChildren: () => __webpack_require__.e(/*! import() | modals-resource-modal-resource-modal-module */ "default~modals-resource-modal-resource-modal-module~tab1-tab1-module").then(__webpack_require__.bind(null, /*! ./modals/resource-modal/resource-modal.module */ "UdnM")).then(m => m.ResourceModalPageModule)
-    },
-    {
-        path: 'progress-modal',
-        loadChildren: () => __webpack_require__.e(/*! import() | modals-progress-modal-progress-modal-module */ "modals-progress-modal-progress-modal-module").then(__webpack_require__.bind(null, /*! ./modals/progress-modal/progress-modal.module */ "6g9r")).then(m => m.ProgressModalPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

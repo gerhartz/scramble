@@ -227,7 +227,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | tab1-tab1-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~modals-resource-modal-resource-modal-module~tab1-tab1-module"), __webpack_require__.e("common"), __webpack_require__.e("tab1-tab1-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~modals-resource-modal-resource-modal-module~tab1-tab1-module"), __webpack_require__.e("tab1-tab1-module")]).then(__webpack_require__.bind(null,
             /*! ../tab1/tab1.module */
             "tmrb")).then(function (m) {
               return m.Tab1PageModule;
@@ -236,9 +236,9 @@
         }, {
           path: 'tab2',
           loadChildren: function loadChildren() {
-            return Promise.all(
+            return __webpack_require__.e(
             /*! import() | tab2-tab2-module */
-            [__webpack_require__.e("common"), __webpack_require__.e("tab2-tab2-module")]).then(__webpack_require__.bind(null,
+            "tab2-tab2-module").then(__webpack_require__.bind(null,
             /*! ../tab2/tab2.module */
             "TUkU")).then(function (m) {
               return m.Tab2PageModule;
@@ -247,9 +247,9 @@
         }, {
           path: 'tab3',
           loadChildren: function loadChildren() {
-            return Promise.all(
+            return __webpack_require__.e(
             /*! import() | tab3-tab3-module */
-            [__webpack_require__.e("common"), __webpack_require__.e("tab3-tab3-module")]).then(__webpack_require__.bind(null,
+            "tab3-tab3-module").then(__webpack_require__.bind(null,
             /*! ../tab3/tab3.module */
             "k+ul")).then(function (m) {
               return m.Tab3PageModule;
@@ -260,21 +260,10 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | tab1-detail-detail-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
             /*! ../tab1/detail/detail.module */
             "9Y0V")).then(function (m) {
               return m.DetailPageModule;
-            });
-          }
-        }, {
-          path: 'tab1/detail/:mountainId/route/:routeId',
-          loadChildren: function loadChildren() {
-            return Promise.all(
-            /*! import() | tab1-detail-route-route-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null,
-            /*! ../tab1/detail/route/route.module */
-            "selH")).then(function (m) {
-              return m.RoutePageModule;
             });
           }
         }, {
@@ -282,32 +271,10 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | tab1-detail-detail-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
             /*! ../tab1/detail/detail.module */
             "9Y0V")).then(function (m) {
               return m.DetailPageModule;
-            });
-          }
-        }, {
-          path: 'tab2/tab1/detail/:mountainId/route/:routeId',
-          loadChildren: function loadChildren() {
-            return Promise.all(
-            /*! import() | tab1-detail-route-route-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null,
-            /*! ../tab1/detail/route/route.module */
-            "selH")).then(function (m) {
-              return m.RoutePageModule;
-            });
-          }
-        }, {
-          path: 'tab2/route/:routeId',
-          loadChildren: function loadChildren() {
-            return Promise.all(
-            /*! import() | tab1-detail-route-route-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~route-route-module~tab1-detail-route-route-module")]).then(__webpack_require__.bind(null,
-            /*! ../tab1/detail/route/route.module */
-            "selH")).then(function (m) {
-              return m.RoutePageModule;
             });
           }
         }, {
@@ -315,7 +282,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | tab1-detail-detail-module */
-            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-detail-route-route-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~tab1-detail-detail-module~tab1-tab1-module"), __webpack_require__.e("default~detail-detail-module~tab1-detail-detail-module")]).then(__webpack_require__.bind(null,
             /*! ../tab1/detail/detail.module */
             "9Y0V")).then(function (m) {
               return m.DetailPageModule;

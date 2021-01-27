@@ -1,29 +1,251 @@
 (function () {
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["tab2-tab2-module"], {
     /***/
-    "./node_modules/raw-loader/dist/cjs.js!./src/app/tab2/tab2.page.html":
-    /*!***************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/tab2/tab2.page.html ***!
-      \***************************************************************************/
+    "EGAO":
+    /*!*************************************!*\
+      !*** ./src/app/tab2/tab2.page.scss ***!
+      \*************************************/
 
     /*! exports provided: default */
 
     /***/
-    function node_modulesRawLoaderDistCjsJsSrcAppTab2Tab2PageHtml(module, __webpack_exports__, __webpack_require__) {
+    function EGAO(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Tab 2\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Tab 2</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <app-explore-container name=\"Tab 2 page\"></app-explore-container>\n</ion-content>\n";
+      __webpack_exports__["default"] = ".dot {\n  height: 0.5em;\n  width: 0.5em;\n  border-radius: 50%;\n  display: inline-block;\n  margin-left: 5px;\n}\n\n#bookmarkIcon {\n  float: right;\n}\n\n#elevationIcon {\n  padding-left: 0px;\n  padding-right: 0px;\n  height: 1.5em;\n  width: 4.5em;\n  border-radius: 25px;\n}\n\n#elevation {\n  background-color: #545556;\n  color: white;\n  border-radius: 5px;\n  padding: 3px;\n}\n\n#mountainDetails {\n  padding-top: 5px;\n  padding-bottom: 5px;\n}\n\nion-thumbnail {\n  width: 100px;\n  height: 100px;\n}\n\nimg {\n  width: auto !important;\n  height: auto !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3RhYjIucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksYUFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBO0VBQ0EsZ0JBQUE7QUFDSjs7QUFFQTtFQUNJLFlBQUE7QUFDSjs7QUFFQTtFQUNJLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0FBQ0o7O0FBRUE7RUFDSSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLFlBQUE7QUFDSjs7QUFFQTtFQUNJLGdCQUFBO0VBQ0EsbUJBQUE7QUFDSjs7QUFFQTtFQUNJLFlBQUE7RUFDQSxhQUFBO0FBQ0o7O0FBRUE7RUFDSSxzQkFBQTtFQUNBLHVCQUFBO0FBQ0oiLCJmaWxlIjoidGFiMi5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZG90IHtcbiAgICBoZWlnaHQ6IDAuNWVtO1xuICAgIHdpZHRoOiAwLjVlbTtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIG1hcmdpbi1sZWZ0OiA1cHg7XG59XG5cbiNib29rbWFya0ljb24ge1xuICAgIGZsb2F0OiByaWdodDtcbn1cblxuI2VsZXZhdGlvbkljb24ge1xuICAgIHBhZGRpbmctbGVmdDogMHB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDBweDtcbiAgICBoZWlnaHQ6IDEuNWVtO1xuICAgIHdpZHRoOiA0LjVlbTtcbiAgICBib3JkZXItcmFkaXVzOiAyNXB4O1xufVxuXG4jZWxldmF0aW9uIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNTQ1NTU2O1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcGFkZGluZzogM3B4O1xufVxuXG4jbW91bnRhaW5EZXRhaWxzIHtcbiAgICBwYWRkaW5nLXRvcDogNXB4O1xuICAgIHBhZGRpbmctYm90dG9tOiA1cHg7XG59XG5cbmlvbi10aHVtYm5haWwge1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBoZWlnaHQ6IDEwMHB4O1xufVxuXG5pbWcge1xuICAgIHdpZHRoOiBhdXRvICFpbXBvcnRhbnQ7XG4gICAgaGVpZ2h0OiBhdXRvICFpbXBvcnRhbnQ7XG59XG5cbiJdfQ== */";
       /***/
     },
 
     /***/
-    "./src/app/tab2/tab2-routing.module.ts":
+    "JZ9U":
+    /*!***********************************!*\
+      !*** ./src/app/tab2/tab2.page.ts ***!
+      \***********************************/
+
+    /*! exports provided: Tab2Page */
+
+    /***/
+    function JZ9U(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Tab2Page", function () {
+        return Tab2Page;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_tab2_page_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./tab2.page.html */
+      "e9nj");
+      /* harmony import */
+
+
+      var _tab2_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./tab2.page.scss */
+      "EGAO");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _ionic_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @ionic/storage */
+      "e8h1");
+
+      var Tab2Page = /*#__PURE__*/function () {
+        function Tab2Page(storage) {
+          _classCallCheck(this, Tab2Page);
+
+          this.storage = storage;
+          this.noFavoriteRoutes = true;
+        }
+
+        _createClass(Tab2Page, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {
+            this.getFavoriteMountains();
+          }
+        }, {
+          key: "ionViewWillEnter",
+          value: function ionViewWillEnter() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      this.getFavoriteMountains();
+                      _context.next = 3;
+                      return this.storage.get('favoriteRoutes');
+
+                    case 3:
+                      this.favoriteRoutes = _context.sent;
+
+                    case 4:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+          }
+        }, {
+          key: "getFavoriteMountains",
+          value: function getFavoriteMountains() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+              return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      _context2.next = 2;
+                      return this.storage.get('favoriteMountains');
+
+                    case 2:
+                      this.favoriteMountains = _context2.sent;
+
+                      if (Array.isArray(this.favoriteMountains)) {
+                        if (this.favoriteMountains.length > 0) {
+                          this.noFavoriteRoutes = false;
+                        } else {
+                          this.noFavoriteRoutes = true;
+                        }
+
+                        this.favoriteMountains.sort(function (a, b) {
+                          if (a.name > b.name) {
+                            return 1;
+                          } else {
+                            return -1;
+                          }
+                        });
+                      } else {
+                        this.noFavoriteRoutes = true;
+                      }
+
+                    case 4:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2, this);
+            }));
+          }
+        }]);
+
+        return Tab2Page;
+      }();
+
+      Tab2Page.ctorParameters = function () {
+        return [{
+          type: _ionic_storage__WEBPACK_IMPORTED_MODULE_4__["Storage"]
+        }];
+      };
+
+      Tab2Page = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-tab2',
+        template: _raw_loader_tab2_page_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_tab2_page_scss__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], Tab2Page);
+      /***/
+    },
+
+    /***/
+    "TUkU":
+    /*!*************************************!*\
+      !*** ./src/app/tab2/tab2.module.ts ***!
+      \*************************************/
+
+    /*! exports provided: Tab2PageModule */
+
+    /***/
+    function TUkU(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Tab2PageModule", function () {
+        return Tab2PageModule;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/common */
+      "ofXK");
+      /* harmony import */
+
+
+      var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/forms */
+      "3Pt+");
+      /* harmony import */
+
+
+      var _tab2_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! ./tab2.page */
+      "JZ9U");
+      /* harmony import */
+
+
+      var _tab2_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! ./tab2-routing.module */
+      "UDmF");
+
+      var Tab2PageModule = function Tab2PageModule() {
+        _classCallCheck(this, Tab2PageModule);
+      };
+
+      Tab2PageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _tab2_routing_module__WEBPACK_IMPORTED_MODULE_6__["Tab2PageRoutingModule"]],
+        declarations: [_tab2_page__WEBPACK_IMPORTED_MODULE_5__["Tab2Page"]]
+      })], Tab2PageModule);
+      /***/
+    },
+
+    /***/
+    "UDmF":
     /*!*********************************************!*\
       !*** ./src/app/tab2/tab2-routing.module.ts ***!
       \*********************************************/
@@ -31,7 +253,7 @@
     /*! exports provided: Tab2PageRoutingModule */
 
     /***/
-    function srcAppTab2Tab2RoutingModuleTs(module, __webpack_exports__, __webpack_require__) {
+    function UDmF(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
@@ -46,25 +268,25 @@
 
       var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
       /*! tslib */
-      "./node_modules/tslib/tslib.es6.js");
+      "mrSG");
       /* harmony import */
 
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
-      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      "fXoL");
       /* harmony import */
 
 
       var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @angular/router */
-      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      "tyNb");
       /* harmony import */
 
 
       var _tab2_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ./tab2.page */
-      "./src/app/tab2/tab2.page.ts");
+      "JZ9U");
 
       var routes = [{
         path: '',
@@ -83,153 +305,22 @@
     },
 
     /***/
-    "./src/app/tab2/tab2.module.ts":
-    /*!*************************************!*\
-      !*** ./src/app/tab2/tab2.module.ts ***!
-      \*************************************/
-
-    /*! exports provided: Tab2PageModule */
-
-    /***/
-    function srcAppTab2Tab2ModuleTs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "Tab2PageModule", function () {
-        return Tab2PageModule;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "./node_modules/tslib/tslib.es6.js");
-      /* harmony import */
-
-
-      var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! @ionic/angular */
-      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! @angular/core */
-      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-      /* harmony import */
-
-
-      var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/common */
-      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-      /* harmony import */
-
-
-      var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! @angular/forms */
-      "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
-      /* harmony import */
-
-
-      var _tab2_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! ./tab2.page */
-      "./src/app/tab2/tab2.page.ts");
-      /* harmony import */
-
-
-      var _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! ../explore-container/explore-container.module */
-      "./src/app/explore-container/explore-container.module.ts");
-      /* harmony import */
-
-
-      var _tab2_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-      /*! ./tab2-routing.module */
-      "./src/app/tab2/tab2-routing.module.ts");
-
-      var Tab2PageModule = function Tab2PageModule() {
-        _classCallCheck(this, Tab2PageModule);
-      };
-
-      Tab2PageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-        imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_6__["ExploreContainerComponentModule"], _tab2_routing_module__WEBPACK_IMPORTED_MODULE_7__["Tab2PageRoutingModule"]],
-        declarations: [_tab2_page__WEBPACK_IMPORTED_MODULE_5__["Tab2Page"]]
-      })], Tab2PageModule);
-      /***/
-    },
-
-    /***/
-    "./src/app/tab2/tab2.page.scss":
-    /*!*************************************!*\
-      !*** ./src/app/tab2/tab2.page.scss ***!
-      \*************************************/
+    "e9nj":
+    /*!***************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/tab2/tab2.page.html ***!
+      \***************************************************************************/
 
     /*! exports provided: default */
 
     /***/
-    function srcAppTab2Tab2PageScss(module, __webpack_exports__, __webpack_require__) {
+    function e9nj(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RhYjIvdGFiMi5wYWdlLnNjc3MifQ== */";
-      /***/
-    },
-
-    /***/
-    "./src/app/tab2/tab2.page.ts":
-    /*!***********************************!*\
-      !*** ./src/app/tab2/tab2.page.ts ***!
-      \***********************************/
-
-    /*! exports provided: Tab2Page */
-
-    /***/
-    function srcAppTab2Tab2PageTs(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "Tab2Page", function () {
-        return Tab2Page;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "./node_modules/tslib/tslib.es6.js");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! @angular/core */
-      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-
-      var Tab2Page = function Tab2Page() {
-        _classCallCheck(this, Tab2Page);
-      };
-
-      Tab2Page.ctorParameters = function () {
-        return [];
-      };
-
-      Tab2Page = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-tab2',
-        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-        /*! raw-loader!./tab2.page.html */
-        "./node_modules/raw-loader/dist/cjs.js!./src/app/tab2/tab2.page.html"))["default"],
-        styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
-        /*! ./tab2.page.scss */
-        "./src/app/tab2/tab2.page.scss"))["default"]]
-      })], Tab2Page);
+      __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar>\n    <ion-title size=\"medium\" class=\"ion-text-center\">Favorites</ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <h3 *ngIf=\"noFavoriteRoutes\" class=\"ion-text-center\" style=\"padding: 20px;\">\n    You don't have any favorites. View a mountain and then click the bookmark icon to add a favorite.\n  </h3>\n  <ion-list>\n    <ion-virtual-scroll [items]=\"favoriteMountains\" approxItemHeight=\"75px\">\n      <ion-item \n        *virtualItem=\"let mountain\" \n        routerLink=\"tab1/detail/{{mountain.mountainId}}\" \n        lines=\"full\"\n        style=\"padding: 0px\" \n        class=\"ion-no-padding\"\n      >\n        <ion-thumbnail slot=\"start\" class=\"ion-no-margin\" style=\"size: 75px;\">\n          <img [src]=\"mountain.thumbnailUrl\">\n        </ion-thumbnail>\n        <ion-grid>\n          <ion-row style=\"padding-left: 10px;\">\n            <ion-col size=\"10\">\n              <div>\n                <b>{{mountain.name}}</b>\n              </div>\n              <div id=\"mountainDetails\">\n                <small id=\"elevation\">{{ mountain.elevation | number }}'</small>\n                <small>&nbsp;&nbsp;| {{ mountain.range }}</small>\n              </div>\n              <div *ngIf=\"mountain.hasRouteClass\">\n                <span *ngIf=\"mountain.hasRouteClass[0]\" style=\"background-color: #77d505;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[0]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[1]\" style=\"background-color: #fdcd01;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[1]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[2]\" style=\"background-color: #fda204;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[2]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[3]\" style=\"background-color: #fd5d02;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[3]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n                <span *ngIf=\"mountain.hasRouteClass[4]\" style=\"background-color: #d53732;\" class=\"dot\"></span>\n                <span *ngIf=\"!mountain.hasRouteClass[4]\" style=\"background-color: #d8d9da;\" class=\"dot\"></span>\n              </div>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-item>\n    </ion-virtual-scroll>\n  </ion-list>\n</ion-content>\n";
       /***/
     }
   }]);

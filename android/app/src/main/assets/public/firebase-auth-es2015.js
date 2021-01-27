@@ -1,6 +1,22 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["firebase-auth"],{
 
-/***/ "./node_modules/@firebase/auth/dist/auth.esm.js":
+/***/ "6nsN":
+/*!******************************************************!*\
+  !*** ./node_modules/firebase/auth/dist/index.esm.js ***!
+  \******************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/auth */ "t6oF");
+
+//# sourceMappingURL=index.esm.js.map
+
+
+/***/ }),
+
+/***/ "t6oF":
 /*!******************************************************!*\
   !*** ./node_modules/@firebase/auth/dist/auth.esm.js ***!
   \******************************************************/
@@ -9,7 +25,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/index.esm.js");
+/* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/app */ "zIRd");
 (function() {/*
 
  Copyright The Closure Library Authors.
@@ -445,22 +461,6 @@ Z(a,"OAuthProvider",Pg,[V("providerId")]);Z(a,"SAMLAuthProvider",Og,[V("provider
 instanceFactory:function(b){b=b.getProvider("auth").getImmediate();return{getUid:q(b.getUid,b),getToken:q(b.mc,b),addAuthTokenListener:q(b.cc,b),removeAuthTokenListener:q(b.Oc,b)}},multipleInstances:!1,instantiationMode:"LAZY",type:"PRIVATE"});_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].registerVersion("@firebase/auth","0.16.1");_firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].INTERNAL.extendNamespace({User:Im})}else throw Error("Cannot find the firebase namespace; be sure to include firebase-app.js before this library.");})();}).apply(typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : {});
 
 //# sourceMappingURL=auth.esm.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/firebase/auth/dist/index.esm.js":
-/*!******************************************************!*\
-  !*** ./node_modules/firebase/auth/dist/index.esm.js ***!
-  \******************************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @firebase/auth */ "./node_modules/@firebase/auth/dist/auth.esm.js");
-
-//# sourceMappingURL=index.esm.js.map
 
 
 /***/ })
